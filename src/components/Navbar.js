@@ -17,12 +17,12 @@ const Navbar = ({ hideNavbar, setHideNavbar }) => {
     <nav className={hideNavbar ? hiddenStyle : visibleStyle}>
       <span className="mr-auto hidden md:block">Antti Hiltunen</span>
 
-      <Link onClick={handleClick} activeClassName="text-gray-400" to="/">
+      <Link onClick={handleClick} activeClassName="text-yellow-600" to="/">
         Home
       </Link>
       <Link
         onClick={handleClick}
-        activeClassName="text-gray-400"
+        activeClassName="text-yellow-600"
         to="/background"
       >
         Background
@@ -30,13 +30,17 @@ const Navbar = ({ hideNavbar, setHideNavbar }) => {
 
       <Link
         onClick={handleClick}
-        activeClassName="text-gray-400"
+        activeClassName="text-yellow-600"
         to="/projects"
       >
         Projects
       </Link>
 
-      <Link onClick={handleClick} activeClassName="text-gray-400" to="/contact">
+      <Link
+        onClick={handleClick}
+        activeClassName="text-yellow-600"
+        to="/contact"
+      >
         Contact
       </Link>
     </nav>

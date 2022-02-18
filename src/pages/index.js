@@ -48,15 +48,15 @@ const IndexPage = () => {
           <article className="w-full md:rounded md:w-auto p-4 bg-white text-black col-start-1 md:col-span-2 row-start-2">
             <h1 className="text-4xl">Antti Hiltunen</h1>
             <h2 className="text-lg my-2 mb-4">
-              Web developer, problem solver, curious person
+              Web developer, problem solver, curious person.
             </h2>
             <p className="text-sm">
-              I knit together complex systems using diverse tools.
+              I use diverse tools to solve diverse problems.
             </p>
-            <p className="text-sm">I love teaching myself how things work.</p>
+            <p className="text-sm">I enjoy teaching myself how things work.</p>
           </article>
 
-          <div className="md:ml-4 flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1 items-center col-start-1 row-start-3 self-start md:justify-self-start md:self-center md:col-start-3 md:row-start-2">
+          <div className="mt-4 md:mt-0 md:ml-4 flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1 items-center col-start-1 row-start-3 self-start md:justify-self-start md:self-center md:col-start-3 md:row-start-2">
             <Link
               className="border-2 rounded p-2 pb-3 px-3 hover:text-gray-400 text-white border-white"
               to="/projects"
