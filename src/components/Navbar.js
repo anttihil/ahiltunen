@@ -5,7 +5,7 @@ const Navbar = ({ hideNavbar, setHideNavbar }) => {
   const defaultMobile =
     "fixed w-48 h-full pl-8 pt-8 z-20 left-0 inset-y-0 flex flex-col items-start space-y-4 font-serif bg-slate-900 text-white";
   const mdScreen =
-    "md:flex md:px-4 md:pt-0 md:flex-row md:items-center md:space-y-0 md:space-x-4 md:z-auto md:justify-end md:h-10 md:w-full";
+    "md:flex md:px-4 md:pt-0 md:flex-row md:items-center md:space-y-0 md:space-x-4 md:justify-end md:h-10 md:w-full";
   const visibleStyle = defaultMobile + " " + mdScreen;
   const hiddenStyle = visibleStyle + " hidden";
 
@@ -17,6 +17,9 @@ const Navbar = ({ hideNavbar, setHideNavbar }) => {
     <nav className={hideNavbar ? hiddenStyle : visibleStyle}>
       <span className="mr-auto hidden md:block">Antti Hiltunen</span>
 
+      <Link onClick={handleClick} activeClassName="text-gray-400" to="/">
+        Home
+      </Link>
       <Link
         onClick={handleClick}
         activeClassName="text-gray-400"
@@ -28,9 +31,9 @@ const Navbar = ({ hideNavbar, setHideNavbar }) => {
       <Link
         onClick={handleClick}
         activeClassName="text-gray-400"
-        to="/portfolio"
+        to="/projects"
       >
-        Portfolio
+        Projects
       </Link>
 
       <Link onClick={handleClick} activeClassName="text-gray-400" to="/contact">
