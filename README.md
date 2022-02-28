@@ -1,3 +1,3 @@
 #My professional website
 
-This is developed with Gatsby, a ReactJS framework.
+This site is developed with Gatsby and TailwindCSS.
