@@ -6,13 +6,11 @@ const MobileHeader = ({ setHideNavbar }) => {
   };
 
   return (
-    <header className="md:hidden flex items-center font-serif bg-slate-900 text-white">
-      <button
+    <header className="md:hidden h-10 flex items-center font-space text-lg bg-slate-900 text-orange-50">
+      <i
         onClick={handleClick}
-        className="mr-auto p-2 bg-gray-400 text-black"
-      >
-        Menu
-      </button>
+        className="icon-menu mr-auto text-2xl p-3  text-orange-50"
+      />
       <div className="mr-4">Antti Hiltunen</div>
     </header>
   );

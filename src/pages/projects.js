@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image";
 const Projects = () => {
   return (
     <Layout>
-      <div className="grid pt-10 scroll-pt-10">
+      <div className="grid md:pt-10 md:scroll-pt-10">
         {/* You can use a GatsbyImage component if the image is dynamic */}
         <StaticImage
           style={{
@@ -13,12 +13,12 @@ const Projects = () => {
             // You can set a maximum height for the image, if you wish.
             // maxHeight: 600,
           }}
-          layout="fullWidth"
+          layout="constrained"
           // You can optionally force an aspect ratio for the generated image
           // aspectRatio={3 / 1}
           // This is a presentational image, so the alt should be an empty string
           alt=""
-          src={"../images/welder-banner.webp"}
+          src={"../images/welder-banner-dimmer.webp"}
         />
         <div
           style={{
@@ -26,27 +26,35 @@ const Projects = () => {
             gridArea: "1/1",
             position: "relative",
           }}
-          className="place-items-center grid grid-cols-1 md:grid-cols-5 grid-rows-3"
+          className="flex items-center"
         >
           {/* Any content here will be centered in the component */}
-          <article className="w-full md:rounded md:w-auto p-4 pb-5 bg-white text-black col-start-1 md:col-span-2 row-start-2">
-            <h1 className="text-4xl">Projects</h1>
-          </article>
+
+          <h1 className="pl-4 md:pl-48 text-4xl md:text-6xl text-amber-100">
+            Projects
+          </h1>
         </div>
       </div>
-      <section className="flex flex-col space-y-4 py-4">
-        <article id="argument-studio" className="flex-col flex space-y-2">
+      <section className="flex flex-col space-y-16 py-8 px-4 md:px-48">
+        <article id="argument-studio" className="flex-col flex space-y-8">
           <header>
-            <h2 class="text-2xl">Argument Studio</h2>
+            <h2 class="text-3xl">Argument Studio</h2>
           </header>
-          <a href="http://argumentstudio.com">http://argumentstudio.com</a>
           <section className="">
-            Argument studio is a web app made for finding and analyzing
-            arguments in PDF documents. It is designed to be a tool for critical
-            thinking education. I wrote this app in collaboration with John
-            Kardosh. It is under continuous development.
+            <p>
+              Argument Studio is a web app made for finding and deconstructing
+              arguments in PDF documents, e.g. scholarly papers. It's designed
+              to be used as an aid for critical thinking education. I wrote this
+              app in collaboration with John Kardosh.
+            </p>
+            <br />
+            Site:
+            <br />
+            <a href="http://argumentstudio.com" className="text-amber-700">
+              <u>argumentstudio.com</u>
+            </a>
           </section>
-          <section className="flex flex-col space-y-1">
+          <section className="flex flex-col space-y-4">
             <header>
               <h3 className="text-xl ">Description</h3>
             </header>
@@ -67,22 +75,13 @@ const Projects = () => {
               }
             />
             <p>
-              In the first "highlight" module, the user highlights text from a
-              PDF document which they have loaded from their filesystem or
-              Internet. Those highlights are collected into the sidebar.
-            </p>
-            <Figure
-              caption="Highlight boxes on diagramming canvas"
-              image={
-                <StaticImage
-                  src="../images/boxes.jpg"
-                  alt="Highlight boxes on diagramming canvas"
-                />
-              }
-            />
-            <p>
-              In the second "diagram" module, the user can boxes by dragging
-              highlights from the sidebar onto the diagramming canvas.
+              In the highlighting module (depicted above), a user can highlight
+              text from a PDF document which they have loaded from their
+              computer's filesystem or from remote URL. Highlights have
+              optionally a user-defined category and color. The highlights are
+              collected into the sidebar and sorted according to their page
+              locations and categories. Highlights can be deleted via the
+              context menu opened by a right-click.
             </p>
             <Figure
               caption="Arrows and boxes on diagramming canvas"
@@ -94,190 +93,120 @@ const Projects = () => {
               }
             />
             <p>
-              By dragging a box onto another, an arrow appears between them. It
-              is easy and quick to create representations of directed
-              relationships like inferences. Right clicking on any item opens a
-              context menu through which items can be edited or deleted. The
-              arrows change their position and length dynamically when the boxes
-              are moved. Re-arranging a diagram is fairly effortless.
+              In the diagramming module (see above), the user can create boxes
+              by dragging highlights from the sidebar onto an empty canvas.
             </p>
-            <Figure
-              caption="Arrows and boxes on diagramming canvas"
-              image={
-                <StaticImage
-                  src="../images/boxes-arrows.jpg"
-                  alt="Arrows and boxes on diagramming canvas"
-                />
-              }
-            />
-            <figure>
-              <StaticImage src="../images/tutorial.jpg" />
-              <figcaption className="text-xs font-serif">
-                Tutorial videos
-              </figcaption>
-            </figure>
             <p>
-              Images do not show how fluid the diagramming functionality is in
-              practice. The app has extensive tutorial videos so it is easy to
-              see how it works on your own. Try it out!
+              When a box is dragged onto another box, an arrow appears between
+              them. This makes it effortless to create representations of
+              directed relationships, such as logical inferences or causal
+              relationships. Right clicking on any item opens a context menu
+              through which items can be edited or deleted. The arrows change
+              their position and length dynamically when the boxes are moved.
+              Re-arranging a diagram is easy.
             </p>
           </section>
-          <section>
+          <section className="space-y-4">
             <header>
               <h3 className="text-xl">Technologies</h3>
             </header>
             <p>
-              The app was written in ReactJS and CSS. We are currently working
-              on a NodeJS REST API to enable: user accounts, user collaboration,
-              loading and saving documents, and more.
+              The app was written in TypeScript, ReactJS and CSS. We are
+              currently working on a NodeJS REST API to enable: user accounts,
+              user collaboration, loading and saving documents, and more.
             </p>
           </section>
         </article>
-        <article id="aihio" className="flex-col flex space-y-2">
+        <article id="aihio" className="flex-col flex space-y-8">
           <header>
-            <h2 className="text-2xl">Aihio</h2>
+            <h2 className="text-3xl">Aihio</h2>
           </header>
-          <section>
+          <section className="space-y-4">
             <p>
-              <a href="https://aihio.org">https://aihio.org</a>
+              A sleek message board built with ExpressJS, Pug and PostgreSQL.
             </p>
             <p>
-              <a href="https://github.com/anttihil/flatter">
-                Github: https://github.com/anttihil/flatter
+              Site:
+              <br />
+              <a href="https://aihio.org" className="text-amber-700">
+                <u>https://aihio.org</u>
+              </a>
+            </p>
+            <p>
+              Github:
+              <br />
+              <a
+                href="https://github.com/anttihil/flatter"
+                className="text-amber-700"
+              >
+                <u>https://github.com/anttihil/flatter</u>
               </a>
             </p>
           </section>
-          <section>
-            A minimal, modernized message board built on ExpressJS, Pug and
-            PostgreSQL.
-          </section>
-          <section>
+          <section className="space-y-4">
             <header>
               <h3 className="text-xl">Description</h3>
             </header>
-            <p>
-              The deployed site, Aihio, is directed at miniature crafts
-              hobbyists, because like many niche hobby communities, the
-              miniature crafts community relies largely on huge social media
-              platforms such as Facebook. Part of my original motive was to
-              develop a small, independent site whose layout and usability
-              borrows from modern social media apps, especially how well they
-              handle the user experience on mobile devices. I have always liked
-              traditional message boards AKA forums as repositories of valuable
-              niche expertise, but I'm bothered by their janky, cluttered user
-              interfaces.
-            </p>
-            <p>
-              The Github repo "flatter" (the public, clonable version of the
-              site) can be set up as for any topic or theme with only minor
-              modifications in the config files. It replaces the usual
-              hierarchical user interface with a flatter one (hence, the repo's
-              name: "flatter"), more akin to the familiar single-page feed of
-              social media posts.
-            </p>
-            <p>
-              The second main motive of this project was self-learning: I could
-              have used a pre-packaged forum software but building a
-              full-featured message board from scratch presented an oppurtunity
-              to learn about servers, application security, and databases.
-              Despite my original impetus sourced in minimal user experience, I
-              quickly realized that a message board is a thin user interface for
-              a database, mediated by a REST API.
-            </p>
             <Figure
-              caption="Arrows and boxes on diagramming canvas"
+              caption="Message board main view"
               image={
                 <StaticImage
-                  src="../images/boxes-arrows.jpg"
-                  alt="Arrows and boxes on diagramming canvas"
+                  src="../images/aihio-main.png"
+                  alt="Message board main view"
                 />
               }
             />
-            <figure className="flex flex-col items-center">
-              <StaticImage
-                src="../images/aihio-main.png"
-                alt="Message board main page"
-              />
-              <figcaption className="text-xs font-serif">
-                Message board main view
-              </figcaption>
-            </figure>
             <p>
-              The main view of the message board filters the posts based on the
-              board selected from the links on the sidebar, sorts the actively
-              commented ones first. Currently, I have not implemented a sorting
-              method button or pagination for posts but the required logic is
-              already implemented at the database level.
+              I value traditional message boards (forums) as repositories of
+              valuable expertise on niche topics. Nevertheless, I'm bothered by
+              their janky, cluttered user interfaces. As a learning project, I
+              decided to build a small, independent community message board for
+              one of my hobbies, miniature crafts. Its layout and usability
+              would borrow from modern social media apps, especially their user
+              experience on mobile devices.
             </p>
-            <Figure
-              caption="Arrows and boxes on diagramming canvas"
-              image={
-                <StaticImage
-                  src="../images/boxes-arrows.jpg"
-                  alt="Arrows and boxes on diagramming canvas"
-                />
-              }
-            />
-            <figure className="flex flex-col items-center">
-              <StaticImage
-                src="../images/post-view.png"
-                alt="Message board main page"
-              />
-              <figcaption className="text-xs font-serif">
-                A view of an individual post
-              </figcaption>
-            </figure>
             <p>
-              When you click you on a post in the main view, an individual post
-              is opened. The main functionality here is simplicity of the
-              layout. Visual space is efficiently and cleanly. Commenting and
-              editing buttons are small, and only visible if you have the user
-              authentication and authorization status to use them. The comments
-              have little links which navigate to the cited post and the link
-              text names the cited user. This navigation behavior makes it easy
-              to keep track of multiple, separate threads of discussion without
-              needing to introduce visual cues of parent-child relations among
-              comments, such as indentation. Indentation is visually powerful,
-              but after a few of levels it starts quickly to take up screen
-              space, creating an unwieldy mobile user experience.
-            </p>
-            <Figure
-              caption="Arrows and boxes on diagramming canvas"
-              image={
-                <StaticImage
-                  src="../images/boxes-arrows.jpg"
-                  alt="Arrows and boxes on diagramming canvas"
-                />
-              }
-            />
-            <figure className="flex flex-col items-center">
-              <StaticImage
-                src="../images/mobile.png"
-                alt="Mobile navigation menu"
-              />
-              <figcaption className="text-xs font-serif">
-                Mobile navigation menu
-              </figcaption>
-            </figure>
-            <p>
-              Putting mobile users first was one of my main design concerns with
-              this site. Traditionally, message boards are not mobile friendly,
-              in part because it is difficult to navigate from one board to
-              another, and further because the posts have an awkward layout.
-              Aihio solves the layout problem by using a vertical feed of cards
-              with tight use of screen space. The navigation problem is solved
-              by a hideable navigation menu, pictured above.
+              Building a full-featured message board from scratch (as opposed to
+              deploying an existing forum software) was a great opportunity to
+              learn about servers, application security, and databases. When I
+              started to work on this project, I quickly realized that a message
+              board is really just a thin user interface for a database,
+              mediated by a REST API.
             </p>
           </section>
-          <section>
+          <section className="space-y-4">
             <header>
               <h3 className="text-xl">Technologies</h3>
             </header>
             <p>
-              A message board server built in server side rendering
-              architecture. Uses PugJs template engine to render HTML
-              dynamically. The database is PostgresSQL, using raw queries (as
-              opposed to an object-relational mapping).
+              The client in this project is quite thin: PugJS template engine
+              with some JS files to add a bit of interactivity to pages. Most of
+              the intricacy is in the NodeJS (Express) server app.
+            </p>
+            <p>
+              I spend a lot of focus to learn about and implement adequate
+              security features. All the POST routes are CSRF protected. All
+              user input is validated and sanitized to prevent XSS attacks,
+              which is obviously very important for a message board. The server
+              uses server side sessions with secure cookies, Passport JS user
+              authentication, and the passwords in the database are hashed with
+              Argon2 algorithm. Every route has specific user authorization to
+              prevent users from accessing resources of admin users or other
+              users of the same role. Beyond the app itself, the server sits
+              behind two reverse proxy servers. Finally, all crucial activity of
+              the server app and also any errors are logged into automatically
+              rotating files, so that if any problem arises it can can be
+              diagnosed and located quickly.
+            </p>
+            <p>
+              The second main area I learned with this project was the design
+              and implementation of PostgreSQL databases and more generally,
+              storing data. I opted out of using an object-relational mapping
+              framework, and wrote raw SQL queries instead. At the end of the
+              project, I was comfortable with the SQL way of thinking. User
+              uploaded images are processed by the server and uploaded to a
+              object storage service which also serves the images faster from a
+              CDN. The database holds only a record of the uploaded images.
             </p>
           </section>
         </article>

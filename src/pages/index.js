@@ -3,7 +3,6 @@ import { StaticImage } from "gatsby-plugin-image";
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 
-// markup
 const IndexPage = () => {
   const [arrowHover, setArrowHover] = useState(false);
   const arrowRightStyle =
@@ -22,19 +21,13 @@ const IndexPage = () => {
   return (
     <Layout>
       <div style={{ display: "grid", height: "100vh" }}>
-        {/* You can use a GatsbyImage component if the image is dynamic */}
         <StaticImage
           style={{
             gridArea: "1/1",
-            // You can set a maximum height for the image, if you wish.
-            // maxHeight: 600,
           }}
           layout="constrained"
-          // You can optionally force an aspect ratio for the generated image
-          // aspectRatio={3 / 1}
-          // This is a presentational image, so the alt should be an empty string
           alt=""
-          src={"../images/freeways-banner.webp"}
+          src={"../images/dim-city.webp"}
         />
         <div
           style={{
@@ -42,34 +35,64 @@ const IndexPage = () => {
             gridArea: "1/1",
             position: "relative",
           }}
-          className="place-items-center grid grid-cols-1 md:grid-cols-5 grid-rows-3"
+          className="place-items-center flex flex-col md:flex-row items-center px-4 py-8 md:pl-48"
         >
-          {/* Any content here will be centered in the component */}
-          <article className="w-full md:rounded md:w-auto p-4 bg-white text-black col-start-1 md:col-span-2 row-start-2">
-            <h1 className="text-4xl">Antti Hiltunen</h1>
-            <h2 className="text-lg my-2 mb-4">
-              Web developer, problem solver, curious person.
+          <article className="text-orange-50 space-y-4">
+            <h2 className="text-xl md:text-2xl mb-6">
+              Full-stack web developer
             </h2>
-            <p className="text-sm">
-              I use diverse tools to solve diverse problems.
+            <p>
+              Background in education. I'm dedicated to teaching myself new
+              things every day.
             </p>
-            <p className="text-sm">I enjoy teaching myself how things work.</p>
-          </article>
+            <p>
+              Technologies:
+              <br />
+              JavaScript, TypeScript, ReactJS, NodeJS, PostgreSQL, <br />
+              HTML, CSS, Bootstrap, TailwindCSS, HTML Canvas
+            </p>
 
-          <div className="mt-4 md:mt-0 md:ml-4 flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1 items-center col-start-1 row-start-3 self-start md:justify-self-start md:self-center md:col-start-3 md:row-start-2">
+            <ul>
+              Contact Me:
+              <li>antti@ahiltunen.com</li>
+              <li>
+                <a
+                  href="https://github.com/anttihil"
+                  className="text-orange-300"
+                >
+                  <u>github.com/anttihil</u>
+                </a>
+              </li>
+            </ul>
+
+            <ul>
+              Latest projects:
+              <li>
+                <a href="http://argumentstudio.com" className="text-orange-300">
+                  <u>argumentstudio.com</u>
+                </a>
+              </li>
+              <li>
+                <a href="https://aihio.org" className="text-orange-300">
+                  <u>aihio.org</u>
+                </a>
+              </li>
+            </ul>
+          </article>
+          <section className="mt-8 md:mt-0 md:ml-8 flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1 items-center ">
             <Link
-              className="border-2 rounded p-2 pb-3 px-3 hover:text-gray-400 text-white border-white"
+              className="border-2 rounded p-2 text-orange-300 hover:text-blue-400 font-space border-white"
               to="/projects"
               onMouseOver={handleLinkOver}
               onMouseLeave={handleLinkLeave}
             >
-              Projects
+              Project Details
             </Link>
             <i
               className={arrowHover ? arrowRightHoverStyle : arrowRightStyle}
             />
             <i className={arrowHover ? arrowDownHoverStyle : arrowDownStyle} />
-          </div>
+          </section>
         </div>
       </div>
     </Layout>
