@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `ahiltunen`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://ahiltunen.com`,
   },
   plugins: [
     "gatsby-plugin-postcss",
@@ -11,7 +11,14 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
+        name: "Antti Hiltunen",
+        short_name: "ahiltunen",
+        start_url: "/",
+        background_color: "#F0F9FF",
+        theme_color: "#0F172A",
+        display: "standalone",
         icon: "src/images/icon.png",
+        crossOrigin: `use-credentials`,
       },
     },
     "gatsby-plugin-sharp",

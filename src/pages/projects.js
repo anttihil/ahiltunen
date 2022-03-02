@@ -2,9 +2,18 @@ import React from "react";
 import Layout from "../components/Layout";
 import Figure from "../components/Figure";
 import { StaticImage } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
+
 const Projects = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Antti Hiltunen -- Project Portfolio</title>
+        <meta
+          name="description"
+          content="Short descriptions of my latest projects."
+        />
+      </Helmet>
       <div className="grid md:pt-10 md:scroll-pt-10">
         {/* You can use a GatsbyImage component if the image is dynamic */}
         <StaticImage
@@ -35,17 +44,18 @@ const Projects = () => {
           </h1>
         </div>
       </div>
-      <section className="flex flex-col space-y-16 py-8 px-4 md:px-48">
+      <section className="flex flex-col space-y-16 py-8 px-8 md:px-48">
         <article id="argument-studio" className="flex-col flex space-y-8">
           <header>
-            <h2 class="text-3xl">Argument Studio</h2>
+            <h2 className=" text-3xl">ArgumentStudio</h2>
           </header>
-          <section className="">
+          <section>
             <p>
-              Argument Studio is a web app made for finding and deconstructing
+              ArgumentStudio is a web app made for finding and deconstructing
               arguments in PDF documents, e.g. scholarly papers. It's designed
               to be used as an aid for critical thinking education. I wrote this
-              app in collaboration with John Kardosh.
+              app in collaboration with John Kardosh. Works best with larger
+              than smartphone size displays.
             </p>
             <br />
             Site:
@@ -124,6 +134,7 @@ const Projects = () => {
           <section className="space-y-4">
             <p>
               A sleek message board built with ExpressJS, Pug and PostgreSQL.
+              Mobile friendly.
             </p>
             <p>
               Site:
@@ -179,34 +190,51 @@ const Projects = () => {
               <h3 className="text-xl">Technologies</h3>
             </header>
             <p>
+              ExpressJS, PostgreSQL, AWS, nodeSharp, Pug, TailwindCSS,
+              MailerSend
+            </p>
+            <p>
               The client in this project is quite thin: PugJS template engine
               with some JS files to add a bit of interactivity to pages. Most of
               the intricacy is in the NodeJS (Express) server app.
             </p>
             <p>
-              I spend a lot of focus to learn about and implement adequate
-              security features. All the POST routes are CSRF protected. All
+              I spent a lot of my focus to learn about and implement adequate
+              security features: All HTTP POST routes are CSRF protected. All
               user input is validated and sanitized to prevent XSS attacks,
-              which is obviously very important for a message board. The server
-              uses server side sessions with secure cookies, Passport JS user
-              authentication, and the passwords in the database are hashed with
-              Argon2 algorithm. Every route has specific user authorization to
-              prevent users from accessing resources of admin users or other
-              users of the same role. Beyond the app itself, the server sits
-              behind two reverse proxy servers. Finally, all crucial activity of
-              the server app and also any errors are logged into automatically
-              rotating files, so that if any problem arises it can can be
-              diagnosed and located quickly.
+              which is obviously very important for a message board.
             </p>
             <p>
-              The second main area I learned with this project was the design
+              User authentication and authorization are robust for the size of
+              the app: The app implements server side sessions with secure
+              cookies, user authentication. User accounts are verified and
+              passwords recovered via automated email service. Every route has
+              specific user authorization to prevent users from accessing
+              resources of other users (either of admin users or other users
+              with similar privileges.)
+            </p>
+            <p>
+              On the database level, user passwords are hashed with Argon2
+              algorithm and queries are protected from SQL injections.
+            </p>
+            <p>
+              All crucial activity of the server app and also any errors are
+              logged into automatically rotating files, so that if any problem
+              arises it can can be diagnosed and located quickly.
+            </p>
+            <p>
+              I learned a bit about security in networking as well: the server
+              sits behind two reverse proxies.
+            </p>
+            <p>
+              The second main area I focused on in this project was the design
               and implementation of PostgreSQL databases and more generally,
               storing data. I opted out of using an object-relational mapping
               framework, and wrote raw SQL queries instead. At the end of the
               project, I was comfortable with the SQL way of thinking. User
-              uploaded images are processed by the server and uploaded to a
-              object storage service which also serves the images faster from a
-              CDN. The database holds only a record of the uploaded images.
+              uploaded images are processed by the server and also uploaded to
+              an AWS S3 storage which serves the images faster from a CDN. The
+              database holds only a record of the uploaded images.
             </p>
           </section>
         </article>

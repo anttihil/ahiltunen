@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React, { useState } from "react";
 import Layout from "../components/Layout";
+import { Helmet } from "react-helmet";
 
 const IndexPage = () => {
   const [arrowHover, setArrowHover] = useState(false);
@@ -20,6 +21,13 @@ const IndexPage = () => {
   };
   return (
     <Layout>
+      <Helmet>
+        <title>Antti Hiltunen -- Professional Website</title>
+        <meta
+          name="description"
+          content="Full-stack web developer, curious person. "
+        />
+      </Helmet>
       <div style={{ display: "grid", height: "100vh" }}>
         <StaticImage
           style={{
@@ -65,17 +73,26 @@ const IndexPage = () => {
               </li>
             </ul>
 
-            <ul>
+            <ul className="space-y-2">
               Latest projects:
               <li>
                 <a href="http://argumentstudio.com" className="text-orange-300">
                   <u>argumentstudio.com</u>
-                </a>
+                </a>{" "}
+                <br />
+                <span>
+                  {">"} An educational web app for finding and analyzing
+                  arguments in PDF text files (larger displays only)
+                </span>
               </li>
               <li>
                 <a href="https://aihio.org" className="text-orange-300">
                   <u>aihio.org</u>
                 </a>
+                <br />
+                <span>
+                  {">"}A message board app built with NodeJS (mobile friendly)
+                </span>
               </li>
             </ul>
           </article>

@@ -1,24 +1,26 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Antti Hiltunen -- About Me</title>
+        <meta
+          name="description"
+          content="A short advertisement about myself. Web developer, self-learner, PhD."
+        />
+      </Helmet>
       <div className="grid md:pt-10 md:scroll-pt-10">
-        {/* You can use a GatsbyImage component if the image is dynamic */}
         <StaticImage
           style={{
             gridArea: "1/1",
-            // You can set a maximum height for the image, if you wish.
-            // maxHeight: 600,
             background: "black",
           }}
           layout="constrained"
           imgStyle={{ opacity: 0.2 }}
-          // You can optionally force an aspect ratio for the generated image
-          // aspectRatio={3 / 1}
-          // This is a presentational image, so the alt should be an empty string
           alt=""
           src={"../images/forest-banner.webp"}
         />
@@ -30,13 +32,12 @@ const About = () => {
           }}
           className="flex items-center"
         >
-          {/* Any content here will be centered in the component */}
           <h1 className="pl-4 md:pl-48 text-4xl md:text-6xl text-black">
             About Me
           </h1>
         </div>
       </div>
-      <article className="flex flex-col space-y-4 py-8 px-4 md:px-48">
+      <article className="flex flex-col space-y-4 py-8 px-8 md:px-48">
         <p>
           I'm a full stack web developer who is motivated by making complex
           things simple. An autodidact in many respects. Independent-minded.
