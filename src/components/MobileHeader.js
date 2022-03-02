@@ -11,7 +11,7 @@ const MobileHeader = ({ setHideNavbar }) => {
         onClick={handleClick}
         className="icon-menu mr-auto text-2xl p-3  text-orange-50"
       />
-      <div className="mr-4">Antti Hiltunen</div>
+      <div className="mr-6">Antti Hiltunen</div>
     </header>
   );
 };
