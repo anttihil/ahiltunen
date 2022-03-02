@@ -14,18 +14,12 @@ const Projects = () => {
           content="Short descriptions of my latest projects."
         />
       </Helmet>
-      <div className="grid md:pt-10 md:scroll-pt-10">
-        {/* You can use a GatsbyImage component if the image is dynamic */}
+      <div className="grid pt-10 scroll-pt-10">
         <StaticImage
           style={{
             gridArea: "1/1",
-            // You can set a maximum height for the image, if you wish.
-            // maxHeight: 600,
           }}
           layout="constrained"
-          // You can optionally force an aspect ratio for the generated image
-          // aspectRatio={3 / 1}
-          // This is a presentational image, so the alt should be an empty string
           alt=""
           src={"../images/welder-banner-dimmer.webp"}
         />
@@ -37,14 +31,12 @@ const Projects = () => {
           }}
           className="flex items-center"
         >
-          {/* Any content here will be centered in the component */}
-
-          <h1 className="pl-4 md:pl-48 text-4xl md:text-6xl text-amber-100">
+          <h1 className="pl-6 md:pl-48 text-4xl md:text-6xl text-amber-100">
             Projects
           </h1>
         </div>
       </div>
-      <section className="flex flex-col space-y-16 py-8 px-8 md:px-48">
+      <section className="flex flex-col space-y-16 py-8 px-6 md:px-48">
         <article id="argument-studio" className="flex-col flex space-y-8">
           <header>
             <h2 className=" text-3xl">ArgumentStudio</h2>

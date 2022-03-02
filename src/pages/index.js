@@ -28,7 +28,10 @@ const IndexPage = () => {
           content="Full-stack web developer, curious person. "
         />
       </Helmet>
-      <div style={{ display: "grid", height: "100vh" }}>
+      <div
+        className="pt-10 scroll-pt-10"
+        style={{ display: "grid", height: "100vh" }}
+      >
         <StaticImage
           style={{
             gridArea: "1/1",
@@ -43,7 +46,7 @@ const IndexPage = () => {
             gridArea: "1/1",
             position: "relative",
           }}
-          className="place-items-center flex flex-col md:flex-row items-center px-4 py-8 md:pl-48"
+          className="place-items-center flex flex-col md:flex-row items-center px-6 py-8 md:pr-0 md:pl-48"
         >
           <article className="text-orange-50 space-y-4">
             <h2 className="text-xl md:text-2xl mb-6">

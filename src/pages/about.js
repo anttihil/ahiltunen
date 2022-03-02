@@ -13,7 +13,7 @@ const About = () => {
           content="A short advertisement about myself. Web developer, self-learner, PhD."
         />
       </Helmet>
-      <div className="grid md:pt-10 md:scroll-pt-10">
+      <div className="grid pt-10 scroll-pt-10">
         <StaticImage
           style={{
             gridArea: "1/1",
@@ -32,12 +32,12 @@ const About = () => {
           }}
           className="flex items-center"
         >
-          <h1 className="pl-4 md:pl-48 text-4xl md:text-6xl text-black">
+          <h1 className="pl-6 md:pl-48 text-4xl md:text-6xl text-black">
             About Me
           </h1>
         </div>
       </div>
-      <article className="flex flex-col space-y-4 py-8 px-8 md:px-48">
+      <article className="flex flex-col space-y-4 py-8 px-6 md:px-48">
         <p>
           I'm a full stack web developer who is motivated by making complex
           things simple. An autodidact in many respects. Independent-minded.

@@ -22,7 +22,7 @@ const NavOverlay = ({ hideNavbar, setHideNavbar }) => {
   }, [hideNavbar, handleEsc]);
 
   const visibleStyle =
-    "z-10 fixed md:hidden inset-0 bg-neutral-900 backdrop-blur-sm opacity-50 transition-opacity duration-300";
+    "z-30 fixed md:hidden inset-0 bg-neutral-900 backdrop-blur-sm opacity-50 transition-opacity duration-300";
   const hiddenStyle = visibleStyle + " hidden";
   const handleClick = () => {
     console.log("Clicked on overlay2.");
