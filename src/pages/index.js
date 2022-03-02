@@ -53,7 +53,7 @@ const IndexPage = () => {
               Full-stack web developer
             </h2>
             <p>
-              Background in education. I'm dedicated to teaching myself new
+              A background in education. I'm dedicated to teaching myself new
               things every day.
             </p>
             <p>
