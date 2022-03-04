@@ -36,9 +36,9 @@ const IndexPage = () => {
           style={{
             gridArea: "1/1",
           }}
-          layout="constrained"
+          layout="fullWidth"
           alt=""
-          src={"../images/dim-city.webp"}
+          src={"../images/dim-city-downscaled.webp"}
         />
         <div
           style={{

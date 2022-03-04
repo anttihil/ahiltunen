@@ -13,7 +13,9 @@ const Layout = ({ children }) => {
       <div className="flex flex-col flex-1 items-center">
         <Navbar hideNavbar={hideNavbar} setHideNavbar={setHideNavbar} />
         <NavOverlay setHideNavbar={setHideNavbar} hideNavbar={hideNavbar} />
-        <main className="font-inter bg-sky-50 text-dark">{children}</main>
+        <main className="font-inter bg-sky-50 text-dark w-full min-h-screen">
+          {children}
+        </main>
       </div>
     </div>
   );

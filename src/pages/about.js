@@ -19,10 +19,10 @@ const About = () => {
             gridArea: "1/1",
             background: "black",
           }}
-          layout="constrained"
+          layout="fullWidth"
           imgStyle={{ opacity: 0.2 }}
           alt=""
-          src={"../images/forest-banner.webp"}
+          src={"../images/forest-banner-downscaled.webp"}
         />
         <div
           style={{

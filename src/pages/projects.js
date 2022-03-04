@@ -19,9 +19,9 @@ const Projects = () => {
           style={{
             gridArea: "1/1",
           }}
-          layout="constrained"
+          layout="fullWidth"
           alt=""
-          src={"../images/welder-banner-dimmer.webp"}
+          src={"../images/welder-banner-dimmer-downscaled.webp"}
         />
         <div
           style={{
