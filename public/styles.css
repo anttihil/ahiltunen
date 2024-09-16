@@ -39,7 +39,7 @@ footer {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
   color: white;
