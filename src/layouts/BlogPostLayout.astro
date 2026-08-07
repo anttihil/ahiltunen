@@ -1,0 +1,114 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  author?: string;
+}
+
+const { title, description, pubDate, author = 'Antti Hiltunen, ' } = Astro.props;
+
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} | Antti Hiltunen`} description={description} type="article">
+  <article class="container">
+    <header class="article-header">
+      <a href="/blog" class="back-link">← Back to writing</a>
+      
+      <div class="article-meta">
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        <span class="meta-separator">•</span>
+        <span>By {author}</span>
+      </div>
+
+      <h1 class="article-title">{title}</h1>
+      <p class="article-subtitle">{description}</p>
+    </header>
+
+    <div class="prose article-body">
+      <slot />
+    </div>
+
+    <footer class="article-footer">
+      <div class="author-box">
+        <h3>About the Author</h3>
+        <p>
+          Antti Hiltunen,  is a Software Engineer at UCLA building internal platforms, AI systems, and automated migration tooling. Formerly primary UI developer for Brain Corp robotics models.
+        </p>
+        <a href="/about" class="inline-link">More about Antti's background →</a>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .article-meta {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    font-family: var(--font-code);
+    margin-bottom: 0.75rem;
+  }
+
+  .meta-separator {
+    margin: 0 0.4rem;
+    color: var(--border-color);
+  }
+
+  .article-title {
+    margin-bottom: 0.75rem;
+    color: var(--text-heading);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    line-height: 1.3;
+  }
+
+  .article-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .article-body {
+    margin-bottom: 3.5rem;
+  }
+
+  .article-footer {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+  }
+
+  .author-box h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-heading);
+  }
+
+  .author-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+</style>

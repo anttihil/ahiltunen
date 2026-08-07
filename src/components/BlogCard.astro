@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+}
+
+const { title, description, pubDate, slug } = Astro.props;
+
+const formattedDate = new Date(pubDate).toISOString().slice(0, 10);
+---
+
+<article class="blog-entry">
+  <div class="entry-date">{formattedDate}</div>
+  <div class="entry-body">
+    <h3 class="entry-title">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h3>
+    <p class="entry-description">{description}</p>
+    <a href={`/blog/${slug}`} class="inline-link">Read article →</a>
+  </div>
+</article>
+
+<style>
+  .blog-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-entry:last-child {
+    border-bottom: none;
+  }
+
+  .entry-date {
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding-top: 0.2rem;
+  }
+
+  .entry-title {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-title a {
+    color: var(--text-heading);
+  }
+
+  .entry-title a:hover {
+    color: var(--accent-link);
+    text-decoration: underline;
+  }
+
+  .entry-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .blog-entry {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

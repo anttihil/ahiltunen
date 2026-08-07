@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About | Antti Hiltunen, "
+  description="Background and experience of Antti Hiltunen, . Software Engineer at UCLA specializing in internal platforms, AI systems, and commercial robotics interfaces."
+>
+  <div class="page-header container">
+    <h1 class="page-title">About</h1>
+  </div>
+
+  <div class="about-body container">
+    <section class="bio-block">
+      <h2>Software Engineer @ UCLA <span class="role-dates">(Jan 2025 – Present)</span></h2>
+      <p>
+        At UCLA, I focus on building core internal platforms, AI workloads, and automated migration tooling:
+      </p>
+      <ul>
+        <li><strong>AI Coding Agents & Migration:</strong> Replaced 20 legacy sites end-to-end. Prompted LLM coding agents to mine millions of lines of site data into deterministic XML transformation rules, cutting ~1,000 hours of manual migration work. Consolidated 20 sites into a multi-tenant platform with centralized CI/CD and IaC (Terraform, Ansible).</li>
+        <li><strong>On-Premise Faculty AI Platform:</strong> Architected an on-premise system for sensitive faculty data that cannot leave university hardware. Built the entire stack alone—from GPU provisioning and job scheduling to multi-tenant auth and UI. Shipped a self-service WCAG compliance system targeting ~60,000 public PDFs, and tuned self-hosted models using <strong>vLLM</strong> to serve concurrent classroom analysis workloads on a single constrained GPU.</li>
+      </ul>
+    </section>
+
+    <section class="bio-block">
+      <h2>Software Engineer (Robotics) @ Brain Corp via ISBX <span class="role-dates">(May 2022 – Dec 2024)</span></h2>
+      <p>
+        Served as the primary and sole UI developer for two commercial autonomous mobile robot models across ~20 software releases:
+      </p>
+      <ul>
+        <li>Reduced dev cycles from days to minutes by embedding a protocol-level robot simulator in the frontend, eliminating hardware and backend dependencies.</li>
+        <li>Delivered the flagship <strong>A-to-B cleaning UI</strong> replacing pre-taught fixed routes, using <strong>DeckGL</strong> for map zone selection over clustered points of interest.</li>
+        <li>Cut UI field troubleshooting time by 50% for QA teams by shipping an embedded observability dashboard, and internationalized the UI across 15 countries.</li>
+      </ul>
+    </section>
+
+    <section class="bio-block">
+      <h2>Lecturer & Academic Background <span class="role-dates">(Jul 2019 – Jan 2022)</span></h2>
+      <p>
+        Before moving into full-time software engineering, I taught formal logic and critical thinking to ~500 students as a Lecturer at UCLA, where I completed my <strong> in Philosophy (2019)</strong> and MA.
+      </p>
+      <p>
+        My academic training focused on formal systems, logic, and 17th-century rationalism (Spinoza). Teaching formal logic and analyzing axiomatic systems laid the foundation for how I approach modern software architecture: reducing complexity, enforcing deterministic state transitions, and writing clean, maintainable code.
+      </p>
+      <p>
+        Prior to UCLA, I earned my <strong>BSocSc in Philosophy, Mathematics, and Linguistics</strong> at the University of Turku in Finland.
+      </p>
+    </section>
+
+    <section class="bio-block">
+      <h2>Connect & Resume</h2>
+      <p>
+        I am based in Los Angeles, CA and open to Staff / Senior Software Engineering, Platform Architecture, and AI Systems roles.
+      </p>
+      <div class="contact-links">
+        <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume (PDF) ↗</a>
+        <a href="mailto:anttihil@gmail.com" class="inline-link">Email (anttihil@gmail.com)</a>
+        <a href="https://www.linkedin.com/in/hiltunen-antti" target="_blank" rel="noopener noreferrer" class="inline-link">LinkedIn ↗</a>
+        <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer" class="inline-link">GitHub ↗</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .about-body {
+    margin-bottom: 4rem;
+  }
+
+  .bio-block {
+    margin-bottom: 2.25rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .bio-block:last-child {
+    border-bottom: none;
+  }
+
+  .bio-block h2 {
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .role-dates {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 0.35rem;
+  }
+
+  .bio-block p {
+    color: var(--text-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 0.85rem;
+  }
+
+  .bio-block ul {
+    margin-left: 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .bio-block li {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+</style>

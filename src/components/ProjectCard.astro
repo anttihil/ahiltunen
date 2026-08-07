@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  role?: string;
+  link?: string;
+  github?: string;
+}
+
+const { title, subtitle, description, role, link, github } = Astro.props;
+---
+
+<article class="project-entry">
+  <div class="project-header">
+    <h3 class="project-title">{title}</h3>
+    <div class="project-meta">
+      <span class="project-subtitle">{subtitle}</span>
+      {role && <span class="project-role">• {role}</span>}
+    </div>
+  </div>
+
+  <p class="project-description">{description}</p>
+
+  {(link || github) && (
+    <div class="project-links">
+      {link && (
+        <a href={link} class="inline-link" target="_blank" rel="noopener noreferrer">
+          View project ↗
+        </a>
+      )}
+      {github && (
+        <a href={github} class="inline-link" target="_blank" rel="noopener noreferrer">
+          Source code ↗
+        </a>
+      )}
+    </div>
+  )}
+</article>
+
+<style>
+  .project-entry {
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .project-entry:last-child {
+    border-bottom: none;
+  }
+
+  .project-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    color: var(--text-heading);
+    margin-bottom: 0.2rem;
+  }
+
+  .project-meta {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+  }
+
+  .project-subtitle {
+    color: var(--text-muted);
+  }
+
+  .project-role {
+    color: var(--text-dim);
+    margin-left: 0.25rem;
+  }
+
+  .project-description {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

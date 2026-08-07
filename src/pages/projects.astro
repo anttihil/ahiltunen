@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const featuredProjects = [
+  {
+    title: "AI Coding Agent Migration & Multi-Tenant Platform",
+    subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
+    description: "Designed and delivered the replacement end-to-end for 20 legacy sites. Cut ~1,000 hours of manual migration by prompting AI coding agents to mine millions of lines of site data into deterministic XML transformation rules. Consolidated 20 independently maintained sites into a multi-tenant platform with centralized CI/CD and IaC (Terraform, Ansible). Developed a content inventory tool surfacing media volume, page age, and WCAG accessibility issues.",
+    role: "Lead Engineer",
+    github: "https://github.com/anttihil"
+  },
+  {
+    title: "On-Premise Faculty AI Systems & WCAG Remediation",
+    subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
+    description: "Architected an on-premise platform for faculty data that cannot leave university hardware. Built the full stack alone—from GPU provisioning and job scheduling to multi-tenant auth, admin UI, and application flows. Shipped a self-service WCAG compliance system targeting an ADA exposure of ~60,000 public PDFs (adopted by a 5-person remediation team). Piloted self-hosted LLMs tuned with vLLM to serve concurrent classroom analysis on a single constrained GPU.",
+    role: "Sole Architect"
+  },
+  {
+    title: "Brain Corp Commercial Robotics UI & Protocol Simulator",
+    subtitle: "Software Engineer @ Brain Corp / ISBX (May 2022 – Dec 2024)",
+    description: "Sole UI developer for two commercial robot models across ~20 releases. Reduced dev cycles from days to minutes and enabled portable sales demos by embedding a protocol-level robot simulator in the frontend, eliminating all hardware and backend dependencies. Delivered UI for flagship on-demand A-to-B cleaning using DeckGL for map zone selection over clustered points of interest. Cut QA field troubleshooting time by 50% with an embedded observability dashboard and internationalized the UI to 15 countries.",
+    role: "Sole UI Developer"
+  }
+];
+---
+
+<BaseLayout
+  title="Projects | Antti Hiltunen, "
+  description="Software engineering projects by Antti Hiltunen covering internal platforms, AI systems orchestration, legacy migration tooling, and commercial robotics UIs."
+>
+  <div class="page-header container">
+    <h1 class="page-title">Projects & Case Studies</h1>
+    <p class="page-description">
+      Platform engineering, on-premise AI systems, legacy automation tooling, and commercial robotics interfaces.
+    </p>
+  </div>
+
+  <div class="projects-container container">
+    <div class="vertical-stream">
+      {featuredProjects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </div>
+
+  <section class="section text-section container">
+    <h2>Technical Skills</h2>
+    <div class="skills-list">
+      <div class="skill-item">
+        <strong>Platform & Infrastructure:</strong> AWS, Terraform, Ansible, GitHub Actions, Docker, Linux, nginx, PostgreSQL, Multi-tenant consolidation, Automated CI/CD.
+      </div>
+      <div class="skill-item">
+        <strong>AI & Automation:</strong> vLLM, Ollama, AWS Bedrock, Python / FastAPI, LLM Coding Agents, GPU Provisioning, OCR processing, Single-GPU vLLM Tuning.
+      </div>
+      <div class="skill-item">
+        <strong>Frontend & Embedded:</strong> TypeScript / React, DeckGL, HTML5 Canvas, Jest / Vitest, Go, SolidJS, PHP, Bash, Selenium, WebSockets, i18n.
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .projects-container {
+    margin-bottom: 3.5rem;
+  }
+
+  .text-section h2 {
+    font-size: 1.3rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .skill-item {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .skill-item strong {
+    color: var(--text-heading);
+  }
+</style>

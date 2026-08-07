@@ -1,0 +1,96 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+
+const navItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'About', path: '/about' },
+];
+---
+
+<header class="header">
+  <div class="container header-content">
+    <a href="/" class="logo">
+      Antti Hiltunen
+    </a>
+
+    <nav class="nav">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
+        return (
+          <a
+            href={item.path}
+            class:list={['nav-link', { active: isActive }]}
+          >
+            {item.name}
+          </a>
+        );
+      })}
+      <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="nav-link">Resume (PDF)</a>
+      <a href="mailto:anttihil@gmail.com" class="nav-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .logo:hover {
+    color: var(--accent-link);
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--text-heading);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--text-heading);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .nav {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+</style>

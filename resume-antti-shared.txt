@@ -1,0 +1,49 @@
+﻿Antti Hiltunen
+Los Angeles, CA | anttihil@gmail.com | github.com/anttihil | linkedin.com/in/hiltunen-antti
+
+
+
+
+Software engineer who builds internal platforms: infrastructure, AI systems, and the interfaces people actually use. At UCLA, replaced 20 legacy sites with a multi-tenant platform and migration tooling as one of two engineers, and built an on-premise platform for data-sensitive workloads. Before, primary UI developer for two commercial robot models.
+
+
+EXPERIENCE
+Software Engineer, UCLA        Jan 2025 - present
+
+
+Designed and delivered the replacement end-to-end for 20 legacy sites:
+* Cut ~1,000 hours of manual migration by having coding agents mine millions of lines of site data into deterministic XML transformation rules
+* Consolidated 20 independently maintained sites into a multi-tenant WordPress platform with centralized CI/CD and IaC
+* Enabled decommissioning decisions with a content inventory tool surfacing media volume, page age, and content issues invisible to admin users
+
+
+Architected an on-premise platform for faculty data that can't leave university hardware:
+* Shipped a self-service WCAG compliance system targeting an ADA exposure of ~60,000 public PDFs, adopted by a five-person remediation team
+* Built the full stack alone, from GPU provisioning and job scheduling through multi-tenant auth, admin, and application UI
+* Piloted self-hosted models for collaborative classroom analysis, tuned with vLLM to serve concurrent users on a single constrained GPU
+
+
+Software Engineer (Robotics), Brain Corp (via ISBX)         May 2022 - Dec 2024
+
+
+Sole UI developer for two commercial robot models across ~20 releases:
+* Reduced dev cycles from days to minutes and enabled portable sales demos by embedding a protocol-level robot simulator in the frontend, eliminating all hardware and backend dependencies
+* Delivered the UI for on-demand A-to-B cleaning, a flagship feature replacing pre-taught fixed routes, using DeckGL for map zone selection over clustered points of interest
+* Cut UI field troubleshooting time by 50% for QA by shipping an embedded observability dashboard
+* Expanded market reach to 15 countries by internationalizing the UI from a single hard-coded language
+
+
+Lecturer, UCLA        Jul 2019 - Jan 2022
+
+
+Taught formal logic and critical thinking to ~500 students
+
+
+SKILLS
+Platform & infrastructure: AWS, Terraform, Ansible, GitHub Actions, Docker, Linux, nginx, PostgreSQL
+AI systems: vLLM, Ollama, AWS Bedrock, Python/FastAPI, OCR
+Frontend: TypeScript/React, DeckGL, HTML5 Canvas, Jest/Vitest
+Also: Go, SolidJS, PHP, Bash, Selenium
+EDUCATION
+UCLA, PhD in Philosophy (2019); MA in Philosophy        
+University of Turku, BSocSc in Philosophy, Math, Linguistics
