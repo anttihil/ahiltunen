@@ -1,0 +1,252 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  currentPost: CollectionEntry<'blog'>;
+  activeSlug: string;
+}
+
+const { posts, currentPost, activeSlug } = Astro.props;
+
+const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<div class="framed-box blog-split-container">
+  <!-- Left Sidebar / Post List -->
+  <aside class="post-sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-label">Articles</span>
+      <span class="sidebar-count">{posts.length} posts</span>
+    </div>
+
+    <nav class="post-list" aria-label="Blog posts list">
+      {posts.map((post, index) => {
+        const isCurrent = post.id === activeSlug;
+        const isLatest = index === 0;
+        const postDate = new Date(post.data.pubDate).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+
+        return (
+          <a
+            href={`/blog/${post.id}`}
+            class:list={['sidebar-item', { active: isCurrent }]}
+          >
+            <div class="item-title-row">
+              <span class="item-title">{post.data.title}</span>
+              {isLatest && <span class="today-tag">today</span>}
+            </div>
+            <div class="item-meta">
+              <time datetime={post.data.pubDate.toISOString()} class="item-date">{postDate}</time>
+            </div>
+          </a>
+        );
+      })}
+    </nav>
+  </aside>
+
+  <!-- Right Reading Pane -->
+  <article class="post-reader">
+    <header class="reader-header">
+      <h1 class="reader-title">{currentPost.data.title}</h1>
+      <div class="reader-divider"></div>
+      <div class="reader-meta">
+        <time datetime={currentPost.data.pubDate.toISOString()}>{formattedDate}</time>
+        <span class="meta-sep">•</span>
+        <span>By {currentPost.data.author}</span>
+        {currentPost.data.tags && currentPost.data.tags.length > 0 && (
+          <>
+            <span class="meta-sep">•</span>
+            <span class="meta-tags">{currentPost.data.tags.join(', ')}</span>
+          </>
+        )}
+      </div>
+    </header>
+
+    {currentPost.data.description && (
+      <p class="reader-lead">{currentPost.data.description}</p>
+    )}
+
+    <div class="prose reader-content">
+      <slot />
+    </div>
+  </article>
+</div>
+
+<style>
+  .blog-split-container {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    min-height: 700px;
+    align-items: stretch;
+  }
+
+  /* Left Sidebar */
+  .post-sidebar {
+    border-right: 1px solid var(--border-color);
+    background-color: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+  }
+
+  .sidebar-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-code);
+    color: var(--text-heading);
+  }
+
+  .sidebar-count {
+    font-size: 0.78rem;
+    font-family: var(--font-code);
+    color: var(--text-dim);
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .sidebar-item {
+    display: block;
+    padding: 0.85rem 1rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    background-color: var(--bg-main);
+  }
+
+  .sidebar-item:hover {
+    border-color: var(--border-color);
+    opacity: 1;
+  }
+
+  .sidebar-item.active {
+    background-color: var(--bg-active);
+    color: var(--text-inverse);
+    border-color: var(--border-color);
+  }
+
+  .item-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .item-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: inherit;
+  }
+
+  .today-tag {
+    font-family: var(--font-code);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 1px solid currentColor;
+    padding: 0.1rem 0.35rem;
+    flex-shrink: 0;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .item-meta {
+    font-family: var(--font-code);
+    font-size: 0.78rem;
+    opacity: 0.8;
+    color: inherit;
+  }
+
+  /* Right Reader Pane */
+  .post-reader {
+    padding: 2.5rem 3rem;
+    background-color: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reader-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .reader-title {
+    font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .reader-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .reader-meta {
+    font-family: var(--font-code);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .meta-sep {
+    color: var(--text-dim);
+  }
+
+  .reader-lead {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    font-style: italic;
+  }
+
+  .reader-content {
+    flex: 1;
+  }
+
+  @media (max-width: 900px) {
+    .blog-split-container {
+      grid-template-columns: 1fr;
+    }
+
+    .post-sidebar {
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .post-reader {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+</style>

@@ -40,12 +40,17 @@ const { title, subtitle, description, role, link, github } = Astro.props;
 
 <style>
   .project-entry {
-    padding-bottom: 2.25rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .project-entry:first-child {
+    padding-top: 0;
   }
 
   .project-entry:last-child {
     border-bottom: none;
+    padding-bottom: 0;
   }
 
   .project-header {
@@ -53,13 +58,16 @@ const { title, subtitle, description, role, link, github } = Astro.props;
   }
 
   .project-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--text-heading);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.35;
   }
 
   .project-meta {
-    font-size: 0.88rem;
+    font-family: var(--font-code);
+    font-size: 0.82rem;
     color: var(--text-dim);
   }
 
@@ -74,13 +82,14 @@ const { title, subtitle, description, role, link, github } = Astro.props;
 
   .project-description {
     color: var(--text-muted);
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.65;
     margin-bottom: 0.75rem;
   }
 
   .project-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
   }
 </style>

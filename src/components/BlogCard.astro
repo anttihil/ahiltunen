@@ -8,7 +8,11 @@ interface Props {
 
 const { title, description, pubDate, slug } = Astro.props;
 
-const formattedDate = new Date(pubDate).toISOString().slice(0, 10);
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
 ---
 
 <article class="blog-entry">
@@ -25,35 +29,41 @@ const formattedDate = new Date(pubDate).toISOString().slice(0, 10);
 <style>
   .blog-entry {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 130px 1fr;
     gap: 1.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .blog-entry:first-child {
+    padding-top: 0;
   }
 
   .blog-entry:last-child {
     border-bottom: none;
+    padding-bottom: 0;
   }
 
   .entry-date {
     font-family: var(--font-code);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-dim);
-    padding-top: 0.2rem;
+    padding-top: 0.15rem;
   }
 
   .entry-title {
     font-size: 1.15rem;
-    line-height: 1.4;
+    line-height: 1.35;
     margin-bottom: 0.5rem;
+    font-weight: 600;
   }
 
   .entry-title a {
     color: var(--text-heading);
+    text-decoration: none;
   }
 
   .entry-title a:hover {
-    color: var(--accent-link);
     text-decoration: underline;
   }
 
@@ -61,13 +71,13 @@ const formattedDate = new Date(pubDate).toISOString().slice(0, 10);
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
   }
 
   @media (max-width: 640px) {
     .blog-entry {
       grid-template-columns: 1fr;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
   }
 </style>

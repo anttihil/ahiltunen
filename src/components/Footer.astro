@@ -2,8 +2,8 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container footer-content">
+<footer class="framed-box footer">
+  <div class="footer-content">
     <div class="footer-left">
       <p class="footer-name">Antti Hiltunen</p>
       <p class="footer-bio">
@@ -12,26 +12,25 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="footer-right">
-      <a href="/projects">Projects</a>
-      <a href="/blog">Blog</a>
       <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
       <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>
-      <a href="https://www.linkedin.com/in/hiltunen-antti" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/hiltunen-antti" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       <a href="mailto:anttihil@gmail.com">Email</a>
     </div>
   </div>
 
-  <div class="container footer-bottom">
-    <p>© {currentYear} Antti Hiltunen</p>
+  <div class="footer-bottom">
+    <p>© {currentYear} Antti Hiltunen. All rights reserved.</p>
   </div>
 </footer>
 
 <style>
   .footer {
+    padding: 1.5rem;
     margin-top: auto;
-    border-top: 1px solid var(--border-color);
-    padding: 3rem 0 2rem;
   }
 
   .footer-content {
@@ -39,33 +38,39 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between;
     align-items: flex-start;
     gap: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .footer-left {
+    max-width: 450px;
   }
 
   .footer-name {
     font-weight: 600;
     color: var(--text-heading);
     margin-bottom: 0.25rem;
+    font-size: 0.98rem;
   }
 
   .footer-bio {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    max-width: 400px;
+    font-size: 0.88rem;
+    line-height: 1.55;
     margin: 0;
   }
 
   .footer-right {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    max-width: 320px;
+    gap: 1.25rem;
+    align-items: center;
   }
 
   .footer-right a {
     color: var(--text-muted);
     font-size: 0.88rem;
+    text-decoration: none;
   }
 
   .footer-right a:hover {
@@ -74,15 +79,20 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-bottom {
-    padding-top: 1.5rem;
-    font-size: 0.82rem;
+    padding-top: 1rem;
+    font-size: 0.8rem;
     color: var(--text-dim);
+    font-family: var(--font-code);
   }
 
   @media (max-width: 640px) {
     .footer-content {
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
+    }
+
+    .footer-right {
+      gap: 0.85rem;
     }
   }
 </style>

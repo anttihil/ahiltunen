@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-  title = "Antti Hiltunen,  | Software Engineer — Platforms, AI Systems & Robotics UI",
+  title = "Antti Hiltunen | Software Engineer — Platforms, AI Systems & Robotics UI",
   description = "Personal site, engineering portfolio, and technical articles by Antti Hiltunen. Software Engineer at UCLA building internal platforms, AI systems, and intuitive interfaces.",
   image = "/icon.png",
   type = "website",
@@ -32,7 +32,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="author" content="Antti Hiltunen, " />
+    <meta name="author" content="Antti Hiltunen" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
@@ -60,7 +60,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "name": "UCLA"
         },
         "alumniOf": ["UCLA", "University of Turku"],
-        "hasCredential": " in Philosophy",
+        "hasCredential": "PhD in Philosophy",
         "email": "anttihil@gmail.com",
         "url": "https://ahiltunen.com",
         "sameAs": [
@@ -71,11 +71,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
   </head>
   <body>
-    <Header />
-    <main class="main-content container">
-      <slot />
-    </main>
-    <Footer />
+    <div class="site-wrapper">
+      <Header />
+      <main class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
 
@@ -83,8 +85,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   .main-content {
     flex: 1;
     width: 100%;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
   }
 </style>

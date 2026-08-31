@@ -1,26 +1,34 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogSplitView from '../../components/BlogSplitView.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return sortedPosts.map((post) => ({
     params: { slug: post.id },
-    props: post,
+    props: { post, allPosts: sortedPosts },
   }));
 }
 
-const post = Astro.props;
+const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPostLayout
-  title={post.data.title}
+<BaseLayout
+  title={`${post.data.title} | Antti Hiltunen`}
   description={post.data.description}
-  pubDate={post.data.pubDate}
-  updatedDate={post.data.updatedDate}
-  tags={post.data.tags}
-  author={post.data.author}
+  type="article"
 >
-  <Content />
-</BlogPostLayout>
+  <BlogSplitView
+    posts={allPosts}
+    currentPost={post}
+    activeSlug={post.id}
+  >
+    <Content />
+  </BlogSplitView>
+</BaseLayout>

@@ -15,89 +15,100 @@ const projects = [
     title: "AI-Powered Platform Migration & Coding Agents",
     subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
     description: "Replaced 20 legacy sites end-to-end. Leveraged LLM coding agents to mine millions of lines of site data into deterministic XML transformation rules, cutting ~1,000 hours of manual work. Consolidated infrastructure into a multi-tenant platform with centralized CI/CD and IaC.",
-    role: "Lead Engineer"
+    role: "Lead Engineer",
+    link: "/projects"
   },
   {
     title: "On-Premise Faculty AI & WCAG Platform",
     subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
     description: "Architected full-stack on-premise system for sensitive faculty data. Built self-service WCAG compliance tooling targeting ~60,000 public PDFs. Tuned self-hosted LLMs with vLLM to serve concurrent classroom analysis on a single constrained GPU.",
-    role: "Sole Architect"
+    role: "Sole Architect",
+    link: "/projects"
   },
   {
     title: "Brain Corp Commercial Robotics UI & Protocol Simulator",
     subtitle: "Software Engineer @ Brain Corp / ISBX (May 2022 – Dec 2024)",
     description: "Sole UI developer for two commercial robot models across ~20 releases. Embedded a protocol-level robot simulator in frontend to cut dev cycles from days to minutes. Delivered flagship A-to-B cleaning UI using DeckGL over clustered points of interest.",
-    role: "Sole UI Developer"
+    role: "Sole UI Developer",
+    link: "/projects"
   }
 ];
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
-  <section class="hero-section container">
-    <h1 class="hero-title">
-      Antti Hiltunen
-    </h1>
+  <div class="framed-box home-container">
+    <!-- Hero / Intro -->
+    <section class="hero-block">
+      <h1 class="hero-title">Antti Hiltunen</h1>
+      <p class="hero-description">
+        Software Engineer building internal platforms, cloud & on-premise infrastructure (Terraform, Ansible, Docker), private AI systems (vLLM, Ollama), and hardware/web user interfaces. Software Engineer at UCLA, formerly primary UI developer for Brain Corp autonomous robotics models. UCLA PhD in Philosophy.
+      </p>
+      <div class="hero-links">
+        <a href="/blog" class="inline-link">Writing & Essays →</a>
+        <a href="/projects" class="inline-link">Featured Projects →</a>
+        <a href="/about" class="inline-link">About Background →</a>
+        <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume (PDF) ↗</a>
+      </div>
+    </section>
 
-    <p class="hero-description">
-      Software engineer building internal platforms, infrastructure (Terraform, Ansible, Docker), AI systems (vLLM, Ollama), and hardware/web user interfaces. Software Engineer at UCLA, formerly primary UI developer for Brain Corp robotics models. UCLA  in Philosophy.
-    </p>
+    <!-- Two-column or structured sections -->
+    <div class="sections-grid">
+      <!-- Left: Recent Writing -->
+      <section class="content-section writing-section">
+        <div class="section-header">
+          <h2>Recent Writing</h2>
+          <a href="/blog" class="section-more">All articles →</a>
+        </div>
+        <div class="cards-list">
+          {recentPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              slug={post.id}
+            />
+          ))}
+        </div>
+      </section>
 
-    <div class="hero-links">
-      <a href="/projects" class="inline-link">View projects →</a>
-      <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume (PDF) ↗</a>
-      <a href="/blog" class="inline-link">Writing →</a>
+      <!-- Right: Featured Projects -->
+      <section class="content-section projects-section">
+        <div class="section-header">
+          <h2>Featured Systems</h2>
+          <a href="/projects" class="section-more">All projects →</a>
+        </div>
+        <div class="cards-list">
+          {projects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </section>
     </div>
-  </section>
-
-  <!-- Featured Projects -->
-  <section class="section container">
-    <div class="section-header">
-      <h2>Featured Projects</h2>
-      <a href="/projects" class="section-link">All projects →</a>
-    </div>
-
-    <div class="vertical-stream">
-      {projects.map((project) => (
-        <ProjectCard {...project} />
-      ))}
-    </div>
-  </section>
-
-  <!-- Writing -->
-  <section class="section container">
-    <div class="section-header">
-      <h2>Writing & Essays</h2>
-      <a href="/blog" class="section-link">All articles →</a>
-    </div>
-
-    <div class="vertical-stream">
-      {recentPosts.map((post) => (
-        <BlogCard
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-          slug={post.id}
-        />
-      ))}
-    </div>
-  </section>
+  </div>
 </BaseLayout>
 
 <style>
-  .hero-section {
-    margin-bottom: 3.5rem;
+  .home-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-block {
+    padding: 2.5rem 2.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .hero-title {
-    margin-bottom: 1rem;
-    font-size: 2.2rem;
+    margin-bottom: 0.85rem;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.025em;
   }
 
   .hero-description {
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     line-height: 1.7;
+    max-width: 900px;
     margin-bottom: 1.5rem;
   }
 
@@ -107,8 +118,17 @@ const projects = [
     flex-wrap: wrap;
   }
 
-  .section {
-    margin-bottom: 3.5rem;
+  .sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .content-section {
+    padding: 2.25rem 2.5rem;
+  }
+
+  .writing-section {
+    border-right: 1px solid var(--border-color);
   }
 
   .section-header {
@@ -116,21 +136,48 @@ const projects = [
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border-color);
   }
 
   .section-header h2 {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-family: var(--font-code);
+  }
+
+  .section-more {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+
+  .section-more:hover {
     color: var(--text-heading);
+    text-decoration: underline;
   }
 
-  .section-link {
-    font-size: 0.88rem;
-    color: var(--text-muted);
+  .cards-list {
+    display: flex;
+    flex-direction: column;
   }
 
-  .section-link:hover {
-    color: var(--accent-link);
+  @media (max-width: 900px) {
+    .sections-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .writing-section {
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-block,
+    .content-section {
+      padding: 1.5rem 1.25rem;
+    }
   }
 </style>
