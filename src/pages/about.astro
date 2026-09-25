@@ -1,68 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const about = await getEntry('about', 'about');
+if (!about) throw new Error('Missing About content: src/content/about/about.md');
+const { Content } = await render(about);
 ---
 
 <BaseLayout
-  title="About | Antti Hiltunen"
-  description="Background and experience of Antti Hiltunen. Software Engineer at UCLA specializing in internal platforms, AI systems, and commercial robotics interfaces."
+  title={`${about.data.title} | Antti Hiltunen`}
+  description={about.data.description}
 >
   <div class="about-container">
     <header class="about-header">
-      <h1 class="about-title">About</h1>
-      <p class="about-lead">
-        I build platforms, private AI systems, and interfaces for real-world hardware.
-      </p>
+      <h1 class="about-title">{about.data.title}</h1>
+      <p class="about-lead">{about.data.lead}</p>
     </header>
 
     <div class="about-content">
-      <section class="bio-block">
-        <h2>Software Engineer @ UCLA <span class="role-dates">(Jan 2025 – Present)</span></h2>
-        <p>
-          At UCLA, I focus on building core internal platforms, AI workloads, and automated migration tooling:
-        </p>
-        <ul>
-          <li><strong>AI Coding Agents & Migration:</strong> Replaced 20 legacy sites end-to-end. Prompted LLM coding agents to mine millions of lines of site data into deterministic XML transformation rules, cutting ~1,000 hours of manual migration work. Consolidated 20 sites into a multi-tenant platform with centralized CI/CD and IaC (Terraform, Ansible).</li>
-          <li><strong>On-Premise Faculty AI Platform:</strong> Architected an on-premise system for sensitive faculty data that cannot leave university hardware. Built the entire stack alone—from GPU provisioning and job scheduling to multi-tenant auth and UI. Shipped a self-service WCAG compliance system targeting ~60,000 public PDFs, and tuned self-hosted models using <strong>vLLM</strong> to serve concurrent classroom analysis workloads on a single constrained GPU.</li>
-        </ul>
-      </section>
-
-      <section class="bio-block">
-        <h2>Software Engineer (Robotics) @ Brain Corp via ISBX <span class="role-dates">(May 2022 – Dec 2024)</span></h2>
-        <p>
-          Served as the primary and sole UI developer for two commercial autonomous mobile robot models across ~20 software releases:
-        </p>
-        <ul>
-          <li>Reduced dev cycles from days to minutes by embedding a protocol-level robot simulator in the frontend, eliminating hardware and backend dependencies.</li>
-          <li>Delivered the flagship <strong>A-to-B cleaning UI</strong> replacing pre-taught fixed routes, using <strong>DeckGL</strong> for map zone selection over clustered points of interest.</li>
-          <li>Cut UI field troubleshooting time by 50% for QA teams by shipping an embedded observability dashboard, and internationalized the UI across 15 countries.</li>
-        </ul>
-      </section>
-
-      <section class="bio-block">
-        <h2>Lecturer & Academic Background <span class="role-dates">(Jul 2019 – Jan 2022)</span></h2>
-        <p>
-          Before moving into full-time software engineering, I taught formal logic and critical thinking to ~500 students as a Lecturer at UCLA, where I completed my <strong>PhD in Philosophy (2019)</strong> and MA.
-        </p>
-        <p>
-          My academic training focused on formal systems, logic, and 17th-century rationalism (Spinoza). Teaching formal logic and analyzing axiomatic systems laid the foundation for how I approach modern software architecture: reducing complexity, enforcing deterministic state transitions, and writing clean, maintainable code.
-        </p>
-        <p>
-          Prior to UCLA, I earned my <strong>BSocSc in Philosophy, Mathematics, and Linguistics</strong> at the University of Turku in Finland.
-        </p>
-      </section>
-
-      <section class="bio-block connect-block">
-        <h2>Connect & Contact</h2>
-        <p>
-          Based in Los Angeles, CA. Open to Staff / Senior Software Engineering, Platform Architecture, and AI Systems roles.
-        </p>
-        <div class="contact-links">
-          <a href="mailto:anttihil@gmail.com" class="inline-link">Email (anttihil@gmail.com)</a>
-          <a href="https://www.linkedin.com/in/hiltunen-antti" target="_blank" rel="noopener noreferrer" class="inline-link">LinkedIn ↗</a>
-          <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer" class="inline-link">GitHub ↗</a>
-          <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Résumé ↗</a>
-        </div>
-      </section>
+      <Content />
+      <div class="contact-links">
+        {about.data.contactLinks.map((link) => (
+          <a
+            href={link.url}
+            class="inline-link"
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
+          >{link.label}</a>
+        ))}
+      </div>
     </div>
   </div>
 </BaseLayout>
@@ -79,7 +45,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .about-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     font-size: clamp(2.55rem, 5vw, 3.4rem);
   }
 
@@ -95,52 +61,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 740px;
   }
 
-  .bio-block {
-    margin-bottom: 2.5rem;
+  .about-content :global(h2) {
+    margin-top: 2.5rem;
     padding-top: 2.25rem;
     border-top: 1px solid var(--border-color);
-  }
-
-  .bio-block:last-child {
-    margin-bottom: 0;
-  }
-
-  .bio-block h2 {
     color: var(--text-heading);
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.35rem;
     font-size: 1.45rem;
     font-weight: 400;
   }
 
-  .role-dates {
-    display: inline-block;
-    font-size: 0.78rem;
+  .about-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .about-content :global(.role-dates) {
+    display: block;
+    font-size: 0.85rem;
     color: var(--text-dim);
     font-weight: 400;
     font-family: var(--font-ui);
-    margin-left: 0.4rem;
+    line-height: 1.45;
+    margin-top: 0.55rem;
   }
 
-  .bio-block p {
+  .about-content :global(p) {
     color: var(--text-body);
     font-size: 1.06rem;
     line-height: 1.75;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
-  .bio-block ul {
+  .about-content :global(ul) {
     margin-left: 1.25rem;
     margin-bottom: 0.85rem;
   }
 
-  .bio-block li {
+  .about-content :global(li) {
     color: var(--text-body);
     font-size: 1.04rem;
     margin-bottom: 0.6rem;
     line-height: 1.7;
   }
 
-  .bio-block strong {
+  .about-content :global(strong) {
     color: var(--text-heading);
   }
 

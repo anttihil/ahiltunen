@@ -28,4 +28,18 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { blog, work };
+const about = defineCollection({
+  loader: glob({ pattern: "about.md", base: "./src/content/about" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    lead: z.string(),
+    contactLinks: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+      external: z.boolean().default(false),
+    })),
+  }),
+});
+
+export const collections = { blog, work, about };
