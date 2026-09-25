@@ -45,15 +45,20 @@ const navItems = [
   }
 
   .nav-link {
-    color: var(--text-muted);
+    color: var(--text-accent);
     font-family: var(--font-ui);
     font-size: 0.83rem;
     text-decoration: none;
   }
 
-  .nav-link.active,
-  .nav-link:hover {
+  .nav-link.active {
     color: var(--text-heading);
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+  }
+
+  .nav-link:hover {
+    color: var(--accent-hover);
     text-decoration: underline;
     text-underline-offset: 0.4em;
   }
