@@ -1,11 +1,9 @@
 ---
-title: On-Premise Faculty AI Systems & WCAG Remediation
-subtitle: Sole Architect • Software Engineer @ UCLA (Jan 2025 – Present)
+title: On-Prem AI & Accessibility Platform
+subtitle: Software Engineer @ UCLA (Jan 2025 – Sept 2026)
 category: professional
 order: 2
-links:
-  - label: Read the story
-    url: /blog/on-premise-llm-vllm-gpu
+
 ---
 
-Architected an on-premise platform for faculty data that cannot leave university hardware. Built the full stack alone—from GPU provisioning and job scheduling to multi-tenant auth, admin UI, and application flows. Shipped a self-service WCAG compliance system targeting an ADA exposure of ~60,000 public PDFs (adopted by a 5-person remediation team). Piloted self-hosted LLMs tuned with vLLM to serve concurrent classroom analysis on a single constrained GPU.
+Designed and built an experimental on-premise platform for AI applications that needed to keep student and faculty data on university-controlled hardware. It supported a collaborative classroom chat where groups could interact with a locally hosted LLM, along with a production-facing PDF accessibility workflow for OCR, remediation, and human-readable accessibility reports. The PDF system became part of a real remediation service used by a small university team processing submitted documents.
