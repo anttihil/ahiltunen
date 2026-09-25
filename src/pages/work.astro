@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { getCollection, render } from 'astro:content';
+
+const entries = await getCollection('work');
+const work = await Promise.all(entries.map(async (entry) => ({
+  ...entry,
+  Content: (await render(entry)).Content,
+})));
+
+const professionalWork = work
+  .filter((entry) => entry.data.category === 'professional')
+  .sort((a, b) => a.data.order - b.data.order);
+const personalWork = work
+  .filter((entry) => entry.data.category === 'personal')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Work | Antti Hiltunen"
+  description="Selected professional work and personal projects by Antti Hiltunen."
+>
+  <div class="work-container">
+    <header class="work-header">
+      <h1 class="work-title">Work</h1>
+      <p class="work-lead">
+        Selected work on platforms, AI systems, and interfaces, alongside independent projects.
+      </p>
+    </header>
+
+    <section class="work-section" aria-labelledby="professional-work-title">
+      <h2 id="professional-work-title">Professional work</h2>
+      <div class="work-list">
+        {professionalWork.map((entry) => (
+          <WorkCard id={entry.id} title={entry.data.title} subtitle={entry.data.subtitle} links={entry.data.links}>
+            <entry.Content />
+          </WorkCard>
+        ))}
+      </div>
+    </section>
+
+    <section class="work-section" aria-labelledby="personal-projects-title">
+      <h2 id="personal-projects-title">Personal projects</h2>
+      {personalWork.length > 0 ? (
+        <div class="work-list">
+          {personalWork.map((entry) => (
+            <WorkCard id={entry.id} title={entry.data.title} subtitle={entry.data.subtitle} links={entry.data.links}>
+              <entry.Content />
+            </WorkCard>
+          ))}
+        </div>
+      ) : (
+        <p class="work-empty">For now, browse my <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer">GitHub projects ↗</a>.</p>
+      )}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .work-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6rem;
+  }
+
+  .work-header {
+    padding: 4.5rem 0 3rem;
+  }
+
+  .work-title {
+    margin-bottom: 0.5rem;
+    font-size: clamp(2.55rem, 5vw, 3.4rem);
+  }
+
+  .work-lead {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .work-section + .work-section {
+    margin-top: 3.5rem;
+  }
+
+  .work-section h2 {
+    margin-bottom: 1.2rem;
+    color: var(--text-accent);
+    font-size: 1rem;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+  }
+
+  .work-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-empty {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .work-header {
+      padding-top: 3rem;
+    }
+  }
+</style>
