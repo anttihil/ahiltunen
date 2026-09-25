@@ -31,7 +31,7 @@ const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-
   .back-link {
     display: inline-block;
     margin-bottom: 3.5rem;
-    color: var(--text-muted);
+    color: var(--text-accent);
     font-family: var(--font-ui);
     font-size: 0.8rem;
     text-decoration: none;
@@ -43,20 +43,21 @@ const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-
   }
 
   .article-header {
-    margin-bottom: 3rem;
+    margin-bottom: 2.75rem;
   }
 
   .article-header time {
     display: block;
     margin-bottom: 0.85rem;
-    color: var(--text-dim);
+    color: var(--text-accent);
     font-family: var(--font-ui);
-    font-size: 0.8rem;
+    font-size: 0.88rem;
+    font-style: italic;
   }
 
   .article-header h1 {
     max-width: 680px;
-    font-size: clamp(2.05rem, 4.5vw, 2.85rem);
+    font-size: clamp(2.25rem, 4.8vw, 3.3rem);
     line-height: 1.16;
     letter-spacing: -0.025em;
   }

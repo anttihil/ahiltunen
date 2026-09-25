@@ -1,39 +1,50 @@
 :root {
-  --bg-main: #f8f7f3;
-  --bg-surface: #f1efe9;
-  --bg-subtle: #eeece5;
+  --bg-canvas: #d9e9e7;
+  --bg-canvas-top: #bdd9dd;
+  --bg-main: #f7faf8;
+  --bg-main-top: #eff6f4;
+  --bg-surface: #eaf2f0;
+  --bg-subtle: #e7efee;
 
-  --text-heading: #292823;
-  --text-body: #33312b;
-  --text-muted: #5d5a52;
-  --text-dim: #69665d;
+  --text-heading: #253c59;
+  --text-body: #344957;
+  --text-muted: #4d6571;
+  --text-dim: #5e7581;
+  --text-accent: #4c6982;
+  --accent-blush: #d5a6a8;
 
-  --border-color: #d8d5cb;
-  --border-light: #e4e1d8;
-  --border-muted: #ccc8bd;
+  --border-color: #b9cdd0;
+  --border-light: #d3e1e1;
+  --border-muted: #a9c0c5;
 
+  --font-display: 'Palatino Linotype', 'Book Antiqua', P052, Georgia, serif;
   --font-reading: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
-  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-ui: 'Palatino Linotype', 'Book Antiqua', P052, Georgia, serif;
   --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --container-max-width: 800px;
+  --container-max-width: 880px;
   --transition-fast: 0.15s ease;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-main: #201f1c;
-    --bg-surface: #292824;
-    --bg-subtle: #302e29;
+    --bg-canvas: #0e2230;
+    --bg-canvas-top: #142d3e;
+    --bg-main: #253b47;
+    --bg-main-top: #314b57;
+    --bg-surface: #2b424c;
+    --bg-subtle: #2a4049;
 
-    --text-heading: #f1ede5;
-    --text-body: #e6e1d7;
-    --text-muted: #c4beb2;
-    --text-dim: #aaa397;
+    --text-heading: #edf4f1;
+    --text-body: #dbe9e7;
+    --text-muted: #bdcfd0;
+    --text-dim: #a5bdc3;
+    --text-accent: #b9d1df;
+    --accent-blush: #d0a6ad;
 
-    --border-color: #48453e;
-    --border-light: #3c3933;
-    --border-muted: #5a554b;
+    --border-color: #4c6973;
+    --border-light: #3c5862;
+    --border-muted: #60808b;
   }
 }
 
@@ -45,7 +56,7 @@
 
 html {
   font-family: var(--font-reading);
-  background-color: var(--bg-main);
+  background-color: var(--bg-canvas);
   color: var(--text-body);
   scroll-behavior: smooth;
   line-height: 1.65;
@@ -56,20 +67,20 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-main);
+  background: linear-gradient(180deg, var(--bg-canvas-top), var(--bg-canvas) 70vh);
   color: var(--text-body);
-  padding: 0 1.5rem;
+  padding: 2.5rem 1.5rem;
 }
 
 @media (max-width: 640px) {
   body {
-    padding: 0 1.25rem;
+    padding: 0;
   }
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-reading);
+  font-family: var(--font-display);
   color: var(--text-heading);
   line-height: 1.2;
   font-weight: 400;
@@ -113,11 +124,21 @@ a:focus-visible {
 .site-wrapper {
   width: 100%;
   max-width: var(--container-max-width);
+  min-height: calc(100vh - 5rem);
   margin: 0 auto;
+  padding: 0 clamp(2rem, 6vw, 4rem);
   display: flex;
   flex-direction: column;
   gap: 0;
   flex: 1;
+  background: linear-gradient(180deg, var(--bg-main-top), var(--bg-main) 28rem);
+}
+
+@media (max-width: 640px) {
+  .site-wrapper {
+    min-height: 100vh;
+    padding: 0 1.25rem;
+  }
 }
 
 .inline-link {
@@ -186,6 +207,15 @@ pre code {
 
 .prose p {
   margin-bottom: 1.45rem;
+}
+
+.prose > p:first-child::first-letter {
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--text-accent);
+  font-family: var(--font-display);
+  font-size: 3.65em;
+  line-height: 0.78;
 }
 
 .prose ul, .prose ol {
