@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  currentPost: CollectionEntry<'blog'>;
+}
+
+const { currentPost } = Astro.props;
+const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+});
+---
+
+<article class="article-page">
+  <a href="/blog" class="back-link">← Writing</a>
+  <header class="article-header">
+    <time datetime={currentPost.data.pubDate.toISOString()}>{formattedDate}</time>
+    <h1>{currentPost.data.title}</h1>
+  </header>
+  <div class="prose article-content"><slot /></div>
+  <footer class="article-footer"><a href="/blog">More writing →</a></footer>
+</article>
+
+<style>
+  .article-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3.5rem 0 7rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 3.5rem;
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: var(--text-heading);
+    text-decoration: underline;
+  }
+
+  .article-header {
+    margin-bottom: 3rem;
+  }
+
+  .article-header time {
+    display: block;
+    margin-bottom: 0.85rem;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+  }
+
+  .article-header h1 {
+    max-width: 680px;
+    font-size: clamp(2.05rem, 4.5vw, 2.85rem);
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+  }
+
+  .article-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+  }
+
+  .article-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .article-footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .article-page {
+      padding-top: 1.75rem;
+    }
+
+    .back-link {
+      margin-bottom: 1.75rem;
+    }
+
+    .article-header {
+      margin-bottom: 2.25rem;
+    }
+  }
+</style>

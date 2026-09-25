@@ -1,5 +1,6 @@
 ---
 interface Props {
+  id?: string;
   title: string;
   subtitle: string;
   description: string;
@@ -8,12 +9,12 @@ interface Props {
   github?: string;
 }
 
-const { title, subtitle, description, role, link, github } = Astro.props;
+const { id, title, subtitle, description, role, link, github } = Astro.props;
 ---
 
-<article class="project-entry">
+<article id={id} class="project-entry">
   <div class="project-header">
-    <h3 class="project-title">{title}</h3>
+    <h2 class="project-title">{title}</h2>
     <div class="project-meta">
       <span class="project-subtitle">{subtitle}</span>
       {role && <span class="project-role">• {role}</span>}
@@ -25,8 +26,8 @@ const { title, subtitle, description, role, link, github } = Astro.props;
   {(link || github) && (
     <div class="project-links">
       {link && (
-        <a href={link} class="inline-link" target="_blank" rel="noopener noreferrer">
-          View project ↗
+        <a href={link} class="inline-link">
+          Read more →
         </a>
       )}
       {github && (
@@ -40,17 +41,12 @@ const { title, subtitle, description, role, link, github } = Astro.props;
 
 <style>
   .project-entry {
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--border-light);
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
   }
 
   .project-entry:first-child {
-    padding-top: 0;
-  }
-
-  .project-entry:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    padding-top: 2rem;
   }
 
   .project-header {
@@ -58,16 +54,16 @@ const { title, subtitle, description, role, link, github } = Astro.props;
   }
 
   .project-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.45rem;
+    font-weight: 400;
     color: var(--text-heading);
     margin-bottom: 0.25rem;
     line-height: 1.35;
   }
 
   .project-meta {
-    font-family: var(--font-code);
-    font-size: 0.82rem;
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
     color: var(--text-dim);
   }
 
@@ -81,9 +77,9 @@ const { title, subtitle, description, role, link, github } = Astro.props;
   }
 
   .project-description {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
+    color: var(--text-body);
+    font-size: 1.05rem;
+    line-height: 1.72;
     margin-bottom: 0.75rem;
   }
 

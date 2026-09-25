@@ -1,183 +1,161 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BlogCard from '../components/BlogCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-const recentPosts = sortedPosts.slice(0, 3);
-
-const projects = [
-  {
-    title: "AI-Powered Platform Migration & Coding Agents",
-    subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
-    description: "Replaced 20 legacy sites end-to-end. Leveraged LLM coding agents to mine millions of lines of site data into deterministic XML transformation rules, cutting ~1,000 hours of manual work. Consolidated infrastructure into a multi-tenant platform with centralized CI/CD and IaC.",
-    role: "Lead Engineer",
-    link: "/projects"
-  },
-  {
-    title: "On-Premise Faculty AI & WCAG Platform",
-    subtitle: "Software Engineer @ UCLA (Jan 2025 – Present)",
-    description: "Architected full-stack on-premise system for sensitive faculty data. Built self-service WCAG compliance tooling targeting ~60,000 public PDFs. Tuned self-hosted LLMs with vLLM to serve concurrent classroom analysis on a single constrained GPU.",
-    role: "Sole Architect",
-    link: "/projects"
-  },
-  {
-    title: "Brain Corp Commercial Robotics UI & Protocol Simulator",
-    subtitle: "Software Engineer @ Brain Corp / ISBX (May 2022 – Dec 2024)",
-    description: "Sole UI developer for two commercial robot models across ~20 releases. Embedded a protocol-level robot simulator in frontend to cut dev cycles from days to minutes. Delivered flagship A-to-B cleaning UI using DeckGL over clustered points of interest.",
-    role: "Sole UI Developer",
-    link: "/projects"
-  }
-];
+const posts = await getCollection('blog');
+const recentPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 ---
 
 <BaseLayout>
-  <div class="framed-box home-container">
-    <!-- Hero / Intro -->
-    <section class="hero-block">
-      <h1 class="hero-title">Antti Hiltunen</h1>
-      <p class="hero-description">
-        Software Engineer building internal platforms, cloud & on-premise infrastructure (Terraform, Ansible, Docker), private AI systems (vLLM, Ollama), and hardware/web user interfaces. Software Engineer at UCLA, formerly primary UI developer for Brain Corp autonomous robotics models. UCLA PhD in Philosophy.
+  <div class="home-page">
+    <header class="introduction">
+      <h1>Antti Hiltunen</h1>
+      <p>
+        I’m a software engineer with a background in philosophy. I write about the systems I work on, the choices behind them, and ideas that help me think more clearly.
       </p>
-      <div class="hero-links">
-        <a href="/blog" class="inline-link">Writing & Essays →</a>
-        <a href="/projects" class="inline-link">Featured Projects →</a>
-        <a href="/about" class="inline-link">About Background →</a>
-        <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume (PDF) ↗</a>
+    </header>
+
+    <section class="writing-section" aria-labelledby="recent-writing-title">
+      <div class="section-heading">
+        <h2 id="recent-writing-title">Recent writing</h2>
+        <a href="/blog">All essays →</a>
+      </div>
+      <div class="essay-list">
+        {recentPosts.map((post) => (
+          <article class="essay-item">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}
+            </time>
+            <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+          </article>
+        ))}
       </div>
     </section>
 
-    <!-- Two-column or structured sections -->
-    <div class="sections-grid">
-      <!-- Left: Recent Writing -->
-      <section class="content-section writing-section">
-        <div class="section-header">
-          <h2>Recent Writing</h2>
-          <a href="/blog" class="section-more">All articles →</a>
-        </div>
-        <div class="cards-list">
-          {recentPosts.map((post) => (
-            <BlogCard
-              title={post.data.title}
-              description={post.data.description}
-              pubDate={post.data.pubDate}
-              slug={post.id}
-            />
-          ))}
-        </div>
-      </section>
-
-      <!-- Right: Featured Projects -->
-      <section class="content-section projects-section">
-        <div class="section-header">
-          <h2>Featured Systems</h2>
-          <a href="/projects" class="section-more">All projects →</a>
-        </div>
-        <div class="cards-list">
-          {projects.map((project) => (
-            <ProjectCard {...project} />
-          ))}
-        </div>
-      </section>
-    </div>
+    <section class="elsewhere" aria-labelledby="elsewhere-title">
+      <h2 id="elsewhere-title">Elsewhere</h2>
+      <p>
+        I work on software at UCLA. Before that, I built interfaces for autonomous robots and taught logic. <a href="/about">A little more about me</a> and <a href="/projects">selected work</a> are here if you’re curious.
+      </p>
+    </section>
   </div>
 </BaseLayout>
 
 <style>
-  .home-container {
-    display: flex;
-    flex-direction: column;
+  .home-page {
+    padding: 5.5rem 0 7rem;
   }
 
-  .hero-block {
-    padding: 2.5rem 2.5rem 2rem;
-    border-bottom: 1px solid var(--border-color);
+  .introduction {
+    max-width: 660px;
+    margin-bottom: 5rem;
   }
 
-  .hero-title {
-    margin-bottom: 0.85rem;
-    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-    letter-spacing: -0.025em;
+  .introduction h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.55rem, 5vw, 3.4rem);
+    letter-spacing: -0.035em;
   }
 
-  .hero-description {
-    font-size: 1.05rem;
+  .introduction p {
+    margin: 0;
     color: var(--text-muted);
+    font-size: clamp(1.12rem, 2vw, 1.27rem);
     line-height: 1.7;
-    max-width: 900px;
-    margin-bottom: 1.5rem;
   }
 
-  .hero-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .sections-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .content-section {
-    padding: 2.25rem 2.5rem;
-  }
-
-  .writing-section {
-    border-right: 1px solid var(--border-color);
-  }
-
-  .section-header {
+  .section-heading {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.6rem;
+    gap: 1rem;
+    padding-bottom: 1.1rem;
     border-bottom: 1px solid var(--border-color);
   }
 
-  .section-header h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-family: var(--font-code);
+  .section-heading h2,
+  .elsewhere h2 {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
   }
 
-  .section-more {
-    font-family: var(--font-code);
+  .section-heading a {
+    flex-shrink: 0;
+    font-family: var(--font-ui);
     font-size: 0.8rem;
-    color: var(--text-dim);
+    color: var(--text-muted);
     text-decoration: none;
   }
 
-  .section-more:hover {
-    color: var(--text-heading);
+  .section-heading a:hover {
     text-decoration: underline;
   }
 
-  .cards-list {
-    display: flex;
-    flex-direction: column;
+  .essay-item {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
   }
 
-  @media (max-width: 900px) {
-    .sections-grid {
+  .essay-item time {
+    padding-top: 0.2rem;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .essay-item h3 {
+    max-width: 620px;
+    font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+    line-height: 1.3;
+  }
+
+  .essay-item a {
+    text-decoration: none;
+  }
+
+  .essay-item a:hover {
+    text-decoration: underline;
+  }
+
+  .elsewhere {
+    max-width: 640px;
+    margin-top: 5rem;
+  }
+
+  .elsewhere h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  .elsewhere p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 640px) {
+    .home-page {
+      padding: 3.75rem 0 5rem;
+    }
+
+    .introduction {
+      margin-bottom: 4rem;
+    }
+
+    .essay-item {
       grid-template-columns: 1fr;
+      gap: 0.35rem;
     }
 
-    .writing-section {
-      border-right: none;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .hero-block,
-    .content-section {
-      padding: 1.5rem 1.25rem;
+    .elsewhere {
+      margin-top: 4rem;
     }
   }
 </style>

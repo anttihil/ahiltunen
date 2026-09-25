@@ -1,21 +1,17 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogSplitView from '../../components/BlogSplitView.astro';
+import BlogArticle from '../../components/BlogArticle.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  const sortedPosts = posts.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
-
-  return sortedPosts.map((post) => ({
+  return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post, allPosts: sortedPosts },
+    props: { post },
   }));
 }
 
-const { post, allPosts } = Astro.props;
+const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -24,11 +20,7 @@ const { Content } = await render(post);
   description={post.data.description}
   type="article"
 >
-  <BlogSplitView
-    posts={allPosts}
-    currentPost={post}
-    activeSlug={post.id}
-  >
+  <BlogArticle currentPost={post}>
     <Content />
-  </BlogSplitView>
+  </BlogArticle>
 </BaseLayout>

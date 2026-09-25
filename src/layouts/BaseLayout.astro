@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = "Antti Hiltunen | Software Engineer — Platforms, AI Systems & Robotics UI",
-  description = "Personal site, engineering portfolio, and technical articles by Antti Hiltunen. Software Engineer at UCLA building internal platforms, AI systems, and intuitive interfaces.",
+  title = "Antti Hiltunen | Writing on software, systems, and philosophy",
+  description = "Essays and notes by Antti Hiltunen on software systems, engineering, and philosophy.",
   image = "/icon.png",
   type = "website",
 } = Astro.props;
@@ -27,6 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" type="application/rss+xml" title="Antti Hiltunen — Writing" href="/rss.xml" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>

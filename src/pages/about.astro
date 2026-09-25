@@ -6,11 +6,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="About | Antti Hiltunen"
   description="Background and experience of Antti Hiltunen. Software Engineer at UCLA specializing in internal platforms, AI systems, and commercial robotics interfaces."
 >
-  <div class="framed-box about-container">
+  <div class="about-container">
     <header class="about-header">
       <h1 class="about-title">About</h1>
       <p class="about-lead">
-        Staff & Senior Software Engineer specializing in core platforms, on-premise AI systems, and hardware/web user interfaces.
+        I build platforms, private AI systems, and interfaces for real-world hardware.
       </p>
     </header>
 
@@ -57,10 +57,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Based in Los Angeles, CA. Open to Staff / Senior Software Engineering, Platform Architecture, and AI Systems roles.
         </p>
         <div class="contact-links">
-          <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume (PDF) ↗</a>
           <a href="mailto:anttihil@gmail.com" class="inline-link">Email (anttihil@gmail.com)</a>
           <a href="https://www.linkedin.com/in/hiltunen-antti" target="_blank" rel="noopener noreferrer" class="inline-link">LinkedIn ↗</a>
           <a href="https://github.com/anttihil" target="_blank" rel="noopener noreferrer" class="inline-link">GitHub ↗</a>
+          <a href="/resume-antti-shared.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Résumé ↗</a>
         </div>
       </section>
     </div>
@@ -71,62 +71,61 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .about-container {
     display: flex;
     flex-direction: column;
+    padding-bottom: 5rem;
   }
 
   .about-header {
-    padding: 2.5rem 2.5rem 2rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 4.5rem 0 3rem;
   }
 
   .about-title {
     margin-bottom: 0.5rem;
-    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-size: clamp(2.55rem, 5vw, 3.4rem);
   }
 
   .about-lead {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
   }
 
   .about-content {
-    padding: 2.5rem;
+    padding: 0;
+    max-width: 740px;
   }
 
   .bio-block {
     margin-bottom: 2.5rem;
-    padding-bottom: 2.25rem;
-    border-bottom: 1px solid var(--border-light);
+    padding-top: 2.25rem;
+    border-top: 1px solid var(--border-color);
   }
 
-  .bio-block:last-child,
-  .connect-block {
+  .bio-block:last-child {
     margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
   }
 
   .bio-block h2 {
     color: var(--text-heading);
     margin-bottom: 0.85rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.45rem;
+    font-weight: 400;
   }
 
   .role-dates {
-    font-size: 0.85rem;
+    display: inline-block;
+    font-size: 0.78rem;
     color: var(--text-dim);
     font-weight: 400;
-    font-family: var(--font-code);
+    font-family: var(--font-ui);
     margin-left: 0.4rem;
   }
 
   .bio-block p {
     color: var(--text-body);
-    font-size: 0.98rem;
-    line-height: 1.7;
-    margin-bottom: 0.85rem;
+    font-size: 1.06rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
   }
 
   .bio-block ul {
@@ -135,10 +134,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .bio-block li {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 0.45rem;
-    line-height: 1.65;
+    color: var(--text-body);
+    font-size: 1.04rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.7;
   }
 
   .bio-block strong {
@@ -153,9 +152,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (max-width: 640px) {
-    .about-header,
-    .about-content {
-      padding: 1.5rem 1.25rem;
+    .about-header {
+      padding-top: 3rem;
     }
   }
 </style>

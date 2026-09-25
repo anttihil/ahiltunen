@@ -1,26 +1,112 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogSplitView from '../../components/BlogSplitView.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
-const latestPost = sortedPosts[0];
-const { Content } = await render(latestPost);
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout
-  title="Blog | Antti Hiltunen"
-  description="Technical essays and articles by Antti Hiltunen covering AI orchestration, coding agents, Robotics UI, WebSockets, and Systems Philosophy."
+  title="Writing | Antti Hiltunen"
+  description="Essays by Antti Hiltunen on software systems, engineering, and philosophy."
 >
-  <BlogSplitView
-    posts={sortedPosts}
-    currentPost={latestPost}
-    activeSlug={latestPost.id}
-  >
-    <Content />
-  </BlogSplitView>
+  <div class="writing-page">
+    <header class="page-header">
+      <h1>Writing</h1>
+      <p>Things I’ve learned while building software, and questions I’m still working through.</p>
+    </header>
+    <div class="post-list">
+      {posts.map((post) => (
+        <article class="post-item">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}
+          </time>
+          <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+        </article>
+      ))}
+    </div>
+    <a class="rss-link" href="/rss.xml">Follow by RSS →</a>
+  </div>
 </BaseLayout>
+
+<style>
+  .writing-page {
+    padding: 5rem 0 7rem;
+  }
+
+  .page-header {
+    max-width: 650px;
+    margin-bottom: 4rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.8rem;
+    font-size: clamp(2.55rem, 5vw, 3.4rem);
+    letter-spacing: -0.035em;
+  }
+
+  .page-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .post-item {
+    display: grid;
+    grid-template-columns: 125px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.65rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .post-item:first-child {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .post-item time {
+    display: block;
+    padding-top: 0.25rem;
+    color: var(--text-dim);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+  }
+
+  .post-item h2 {
+    max-width: 630px;
+    font-size: clamp(1.28rem, 2.4vw, 1.55rem);
+    line-height: 1.3;
+  }
+
+  .post-item a {
+    text-decoration: none;
+  }
+
+  .post-item a:hover {
+    text-decoration: underline;
+  }
+
+  .rss-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .rss-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .writing-page {
+      padding-top: 3.5rem;
+    }
+
+    .post-item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>
