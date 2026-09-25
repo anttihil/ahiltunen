@@ -1,17 +1,32 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
 
 interface Props {
   currentPost: CollectionEntry<'blog'>;
+  headings: MarkdownHeading[];
 }
 
-const { currentPost } = Astro.props;
+const { currentPost, headings } = Astro.props;
+const outline = headings.filter(({ depth }) => depth === 2 || depth === 3);
 const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
 });
 ---
 
 <article class="article-page">
+  {outline.length > 0 && (
+    <nav class="article-outline" aria-label="On this page">
+      <div class="outline-inner">
+        <p class="outline-title">On this page</p>
+        <ol>
+          {outline.map(({ depth, slug, text }) => (
+            <li class:list={{ nested: depth === 3 }}><a href={`#${slug}`}>{text}</a></li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  )}
   <a href="/blog" class="back-link">← Writing</a>
   <header class="article-header">
     <time datetime={currentPost.data.pubDate.toISOString()}>{formattedDate}</time>
@@ -23,9 +38,69 @@ const formattedDate = new Date(currentPost.data.pubDate).toLocaleDateString('en-
 
 <style>
   .article-page {
+    position: relative;
     max-width: 680px;
     margin: 0 auto;
     padding: 3.5rem 0 7rem;
+  }
+
+  .article-outline {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    .article-outline {
+      display: block;
+      position: absolute;
+      top: 3.5rem;
+      bottom: 0;
+      right: calc(100% + 2.5rem);
+      width: 200px;
+      font-family: var(--font-ui);
+    }
+
+    .outline-inner {
+      position: sticky;
+      top: 2rem;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+
+    .outline-title {
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .article-outline ol {
+      list-style: none;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .article-outline li {
+      margin: 0.65rem 0;
+      padding-left: 0.9rem;
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .article-outline li.nested {
+      padding-left: 1.8rem;
+      font-size: 0.78rem;
+    }
+
+    .article-outline a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .article-outline a:hover,
+    .article-outline a:focus-visible {
+      color: var(--text-accent);
+      text-decoration: underline;
+    }
   }
 
   .back-link {
