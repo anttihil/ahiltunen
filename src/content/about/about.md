@@ -1,7 +1,7 @@
 ---
 title: About
-description: Background and experience of Antti Hiltunen. Software Engineer at UCLA specializing in internal platforms, AI systems, and commercial robotics interfaces.
-lead: I build platforms, private AI systems, and interfaces for real-world hardware.
+description: Background and experience of Antti Hiltunen. Software Engineer, PhD.
+lead: Exploring how technology can make us more capable, not merely more efficient.
 contactLinks:
   - label: Email (anttihil@gmail.com)
     url: mailto:anttihil@gmail.com
@@ -11,34 +11,14 @@ contactLinks:
   - label: GitHub ↗
     url: https://github.com/anttihil
     external: true
-  - label: Résumé ↗
-    url: /resume-antti-shared.pdf
-    external: true
 ---
 
-## Software Engineer @ UCLA <span class="role-dates">(Jan 2025 – Present)</span>
+I think of myself as a builder and a systems thinker. I’m interested in how complex things fit together, but also in a more philosophical question: what are we actually trying to make, and what is it for?
 
-At UCLA, I focus on building core internal platforms, AI workloads, and automated migration tooling:
+I came to software through philosophy. Before that, I had studied mathematics, and while teaching logic and studying the philosophy of computation, I began to realize that there was a side of my thinking I had never fully explored. Programming immediately appealed to me because it forces ideas to become concrete. In philosophy, an idea can remain abstract for a long time. In engineering, eventually the thing has to work. You build something, observe what happens, revise it, and try again.
 
-- **AI Coding Agents & Migration:** Replaced 20 legacy sites end-to-end. Prompted LLM coding agents to mine millions of lines of site data into deterministic XML transformation rules, cutting ~1,000 hours of manual migration work. Consolidated 20 sites into a multi-tenant platform with centralized CI/CD and IaC (Terraform, Ansible).
-- **On-Premise Faculty AI Platform:** Architected an on-premise system for sensitive faculty data that cannot leave university hardware. Built the entire stack alone—from GPU provisioning and job scheduling to multi-tenant auth and UI. Shipped a self-service WCAG compliance system targeting ~60,000 public PDFs, and tuned self-hosted models using **vLLM** to serve concurrent classroom analysis workloads on a single constrained GPU.
+That process has shaped the kinds of projects I enjoy most. I like taking a problem, understanding the whole system around it, finding the right components, and making them work together. One of my first substantial projects was an educational tool that lets students turn annotations on a text into visual argument diagrams. Since then, I’ve built everything from private, locally hosted AI tools to real-time learning environments where students and teachers can interact with language models together. What I find most satisfying is the moment when the individual pieces become a functioning whole.
 
-## Software Engineer (Robotics) @ Brain Corp via ISBX <span class="role-dates">(May 2022 – Dec 2024)</span>
+The question I keep returning to is how technology can make people more capable rather than simply doing more things for them. Understanding is not merely instrumental: learning something changes the person who learns it. I’m especially interested in technology as a genuine learning environment—something that can provide the right challenges, experiences, and feedback to help people develop richer memories, broader knowledge, and stronger ways of thinking.
 
-Served as the primary and sole UI developer for two commercial autonomous mobile robot models across ~20 software releases:
-
-- Reduced dev cycles from days to minutes by embedding a protocol-level robot simulator in the frontend, eliminating hardware and backend dependencies.
-- Delivered the flagship **A-to-B cleaning UI** replacing pre-taught fixed routes, using **DeckGL** for map zone selection over clustered points of interest.
-- Cut UI field troubleshooting time by 50% for QA teams by shipping an embedded observability dashboard, and internationalized the UI across 15 countries.
-
-## Lecturer & Academic Background <span class="role-dates">(Jul 2019 – Jan 2022)</span>
-
-Before moving into full-time software engineering, I taught formal logic and critical thinking to ~500 students as a Lecturer at UCLA, where I completed my **PhD in Philosophy (2019)** and MA.
-
-My academic training focused on formal systems, logic, and 17th-century rationalism (Spinoza). Teaching formal logic and analyzing axiomatic systems laid the foundation for how I approach modern software architecture: reducing complexity, enforcing deterministic state transitions, and writing clean, maintainable code.
-
-Prior to UCLA, I earned my **BSocSc in Philosophy, Mathematics, and Linguistics** at the University of Turku in Finland.
-
-## Connect & Contact
-
-Based in Los Angeles, CA. Open to Staff / Senior Software Engineering, Platform Architecture, and AI Systems roles.
+That interest in turning ideas into something tangible extends beyond software. I draw and paint, build miniatures and things around the house, and cook whenever I can. I also like walking and cycling in nature, where moving slowly through a landscape reveals its shape and details in a way that passing through it quickly never does. In one form or another, I seem to keep coming back to the same activity: paying attention to how things are put together, and trying to make something that works.
